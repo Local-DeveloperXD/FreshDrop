@@ -103,8 +103,6 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 
 /* CUSTOMER HEADER */
 .cust-header{background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);padding:20px 18px 18px;flex-shrink:0}
-.search-wrap{overflow:hidden;transition:max-height .3s ease, opacity .3s ease, padding .3s ease;max-height:80px;opacity:1}
-.search-wrap.hidden{max-height:0;opacity:0;padding:0}
 .user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .user-info{display:flex;align-items:center;gap:10px}
 .user-avatar{width:36px;height:36px;background:var(--or1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;border:2px solid rgba(255,255,255,.3)}
@@ -285,7 +283,7 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .add-addr-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 14px 16px;padding:14px;background:#fff;border:2px dashed #fde8d0;border-radius:var(--r);font-size:14px;font-weight:700;color:var(--gray);cursor:pointer;transition:all .2s}
 .add-addr-btn:hover{border-color:var(--or1);color:var(--or1)}
 
-/* ZONE */
+/* ZONE MANAGEMENT */
 .zone-card{background:#fff;border-radius:var(--r);padding:14px;margin:0 14px 10px;box-shadow:0 2px 10px rgba(249,115,22,.07);display:flex;align-items:center;gap:12px}
 .zone-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
 .zone-info{flex:1}
@@ -296,6 +294,13 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .zone-toggle.on{background:var(--gr1)}
 .zone-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
 .zone-toggle.on::after{transform:translateX(18px)}
+.zone-action-row{display:flex;gap:6px;flex-shrink:0;align-items:center}
+.zone-edit-btn{background:var(--or3);color:var(--or2);border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:800;cursor:pointer;transition:all .2s}
+.zone-edit-btn:hover{background:var(--or1);color:#fff}
+.zone-del-btn{background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:800;cursor:pointer;transition:all .2s}
+.zone-del-btn:hover{background:#ef4444;color:#fff}
+.zone-color-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid transparent;transition:all .2s}
+.zone-color-swatch.selected{border-color:var(--dark);transform:scale(1.15)}
 
 /* TRACK MODAL */
 .track-modal-overlay{display:none;position:fixed;inset:0;background:rgba(28,10,0,.6);z-index:300;align-items:flex-end;backdrop-filter:blur(4px)}
@@ -501,6 +506,58 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .dot.off{background:#9ca3af;animation:none}
 .ol-label{font-size:13px;font-weight:700}
 .btn-toggle{background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer}
+
+/* CUSTOMER MANAGEMENT */
+.cust-card{background:#fff;border-radius:var(--r);padding:14px;margin:0 14px 10px;box-shadow:0 2px 10px rgba(249,115,22,.07);display:flex;align-items:center;gap:12px;animation:slideInLeft .3s both}
+.cust-card.banned{background:#fff1f2;border:1.5px solid #fca5a5}
+.cust-av{width:42px;height:42px;border-radius:50%;background:var(--or1);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0}
+.cust-av.banned-av{background:#ef4444}
+.cust-info{flex:1;min-width:0}
+.cust-name-txt{font-size:14px;font-weight:800;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cust-email-txt{font-size:11px;color:var(--gray);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cust-meta-row{display:flex;align-items:center;gap:8px;margin-top:5px;flex-wrap:wrap}
+.cust-badge{font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px}
+.cust-badge.active-badge{background:#dcfce7;color:#166534}
+.cust-badge.banned-badge{background:#fee2e2;color:#991b1b}
+.cust-badge.orders-badge{background:var(--or4);color:var(--or2)}
+.cust-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.btn-ban{padding:6px 12px;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;cursor:pointer;transition:all .2s}
+.btn-ban.do-ban{background:#fee2e2;color:#991b1b}
+.btn-ban.do-ban:hover{background:#ef4444;color:#fff}
+.btn-ban.do-unban{background:#dcfce7;color:#166534}
+.btn-ban.do-unban:hover{background:#16a34a;color:#fff}
+.cust-search-bar{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--border);border-radius:var(--r-sm);padding:10px 14px;margin:12px 14px 8px}
+.cust-search-bar input{flex:1;border:none;outline:none;font-size:13px;font-weight:600;font-family:'Nunito',sans-serif}
+.cust-stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:10px 14px;flex-shrink:0}
+.cust-stat-mini{background:#fff;border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 8px rgba(249,115,22,.07)}
+.csm-val{font-family:'Fraunces',sans-serif;font-size:18px;font-weight:900;color:var(--dark)}
+.csm-lbl{font-size:9px;color:var(--gray);font-weight:700;margin-top:1px;text-transform:uppercase}
+
+/* RIDER PICKER MODAL */
+.rider-picker-overlay{display:none;position:fixed;inset:0;background:rgba(28,10,0,.65);z-index:350;align-items:flex-end;backdrop-filter:blur(4px)}
+.rider-picker-overlay.open{display:flex}
+.rider-picker-sheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-height:75vh;overflow-y:auto;padding:20px 20px 36px;animation:slideUp .35s cubic-bezier(.34,1.2,.64,1)}
+.rider-picker-sheet::-webkit-scrollbar{display:none}
+.rp-order-preview{background:var(--or3);border-radius:12px;padding:12px 14px;margin-bottom:16px;border-left:3px solid var(--or1)}
+.rp-order-id{font-size:13px;font-weight:900;color:var(--or2)}
+.rp-order-info{font-size:12px;color:var(--gray);font-weight:600;margin-top:3px}
+.rider-pick-card{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #fef3c7;cursor:pointer;transition:background .15s;border-radius:10px;margin:0 -4px;padding:12px 8px}
+.rider-pick-card:last-child{border-bottom:none}
+.rider-pick-card:hover{background:var(--or3)}
+.rider-pick-card.selected{background:var(--or3);border:1.5px solid var(--or1);border-radius:12px}
+.rpc-av{width:44px;height:44px;border-radius:50%;background:var(--or1);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;position:relative}
+.rpc-online-dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;border-radius:50%;border:2px solid #fff}
+.rpc-online-dot.on{background:#22c55e}
+.rpc-online-dot.off{background:#9ca3af}
+.rpc-name{font-size:14px;font-weight:800;color:var(--dark)}
+.rpc-meta{font-size:11px;color:var(--gray);font-weight:600;margin-top:2px}
+.rpc-stats{font-size:11px;color:var(--or2);font-weight:700;margin-top:2px}
+.rpc-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);margin-left:auto;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.rider-pick-card.selected .rpc-check{background:var(--or1);border-color:var(--or1);color:#fff}
+.rp-confirm-btn{width:100%;background:linear-gradient(135deg,var(--or1),var(--or2));color:#fff;border:none;border-radius:var(--r-sm);padding:15px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:16px;box-shadow:0 4px 14px rgba(249,115,22,.35);transition:all .2s}
+.rp-confirm-btn:disabled{opacity:.4;cursor:not-allowed}
+.no-riders-msg{text-align:center;padding:30px 20px;color:var(--gray)}
+.no-riders-msg .nr-icon{font-size:44px;margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -637,7 +694,7 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
         <div class="filter-chip" id="fcat-drinks"   onclick="filterCategory('drinks',this)">🥤 Drinks</div>
         <div class="filter-chip" id="fcat-noodles"  onclick="filterCategory('noodles',this)">🍜 Noodles</div>
       </div>
-      <div class="scroll-area" id="shop-scroll-area" onscroll="handleShopScroll(this)">
+      <div class="scroll-area">
         <div class="sec-hdr"><h3 id="products-title">All Products</h3><span id="products-count"></span></div>
         <div class="products-grid" id="products-grid"></div>
       </div>
@@ -696,6 +753,7 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
       <button class="admin-stab active" id="ast-orders"    onclick="switchAdminTab('orders',this)">📦 Orders</button>
       <button class="admin-stab"        id="ast-analytics" onclick="switchAdminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-stab"        id="ast-riders"    onclick="switchAdminTab('riders',this)">🚴 Riders</button>
+      <button class="admin-stab"        id="ast-customers" onclick="switchAdminTab('customers',this)">👥 Customers</button>
       <button class="admin-stab"        id="ast-zones"     onclick="switchAdminTab('zones',this)">🗺️ Zones</button>
       <button class="admin-stab"        id="ast-products"  onclick="switchAdminTab('products',this)">🛒 Products</button>
     </div>
@@ -757,6 +815,24 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
           <button onclick="addZone()" style="background:var(--or1);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer">＋ Add Zone</button>
         </div>
         <div id="admin-zones-list"></div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS TAB -->
+    <div id="admin-tab-customers" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+      <div class="cust-stats-row" id="cust-stats-row">
+        <div class="cust-stat-mini"><div class="csm-val" id="cs-total">0</div><div class="csm-lbl">Total</div></div>
+        <div class="cust-stat-mini"><div class="csm-val" id="cs-active" style="color:var(--gr1)">0</div><div class="csm-lbl">Active</div></div>
+        <div class="cust-stat-mini"><div class="csm-val" id="cs-banned" style="color:var(--red)">0</div><div class="csm-lbl">Banned</div></div>
+      </div>
+      <div class="cust-search-bar">
+        <span>🔍</span>
+        <input type="text" id="cust-search-input" placeholder="Search by name or email…" oninput="filterCustomers(this.value)">
+        <span id="cust-search-clear" onclick="clearCustomerSearch()" style="cursor:pointer;display:none;color:var(--gray)">✕</span>
+      </div>
+      <div class="scroll-area" style="padding-top:4px">
+        <div id="customers-list"></div>
         <button class="logout-btn" onclick="logout()">🚪 Logout</button>
       </div>
     </div>
@@ -942,6 +1018,8 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
           <div id="gps-map-preview" style="display:none;margin-top:8px;border-radius:10px;overflow:hidden;height:140px;border:2px solid #0ea5e9">
             <iframe id="gps-map-iframe" style="width:100%;height:100%;border:none" src="about:blank"></iframe>
           </div>
+          <!-- Zone check banner — shown after GPS tap -->
+          <div id="zone-check-banner" style="display:none;align-items:center;gap:10px;margin-top:10px;padding:12px 14px;border-radius:12px;border:2px solid #16a34a;background:#dcfce7"></div>
         </div>
       </div>
       <div style="margin-top:16px">
@@ -1115,6 +1193,56 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
   </div>
 </div>
 
+<!-- RIDER PICKER MODAL -->
+<div class="rider-picker-overlay" id="rider-picker-modal">
+  <div class="rider-picker-sheet">
+    <div class="modal-handle"></div>
+    <h3 style="font-size:18px;font-weight:900;margin-bottom:6px">Assign a Rider 🚴</h3>
+    <div class="rp-order-preview" id="rp-order-preview">
+      <div class="rp-order-id" id="rp-order-id">#1001</div>
+      <div class="rp-order-info" id="rp-order-info">Loading…</div>
+    </div>
+    <div id="rider-pick-list"></div>
+    <button class="rp-confirm-btn" id="rp-confirm-btn" onclick="confirmRiderAssign()" disabled>
+      Select a rider to assign
+    </button>
+  </div>
+</div>
+
+<!-- ZONE EDIT MODAL -->
+<div class="modal-overlay" id="zone-modal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3 id="zone-modal-title">➕ Add Zone</h3>
+    <input type="hidden" id="zone-edit-id">
+    <div class="inp-group">
+      <label>Zone Name</label>
+      <input type="text" id="zone-input-name" placeholder="e.g. Main Tauru Zone">
+    </div>
+    <div class="inp-group">
+      <label>Areas Covered</label>
+      <input type="text" id="zone-input-areas" placeholder="e.g. Main Tauru, Sector 5">
+    </div>
+    <div class="inp-group">
+      <label>Delivery Fee (₹)</label>
+      <input type="number" id="zone-input-fee" placeholder="30" min="0">
+    </div>
+    <div class="inp-group">
+      <label>Colour</label>
+      <div style="display:flex;gap:10px;margin-top:4px" id="zone-color-row">
+        <div class="zone-color-swatch" data-color="#f97316" style="background:#f97316" onclick="pickZoneColor('#f97316',this)">🟠</div>
+        <div class="zone-color-swatch" data-color="#8b5cf6" style="background:#8b5cf6" onclick="pickZoneColor('#8b5cf6',this)">🟣</div>
+        <div class="zone-color-swatch" data-color="#06b6d4" style="background:#06b6d4" onclick="pickZoneColor('#06b6d4',this)">🔵</div>
+        <div class="zone-color-swatch" data-color="#16a34a" style="background:#16a34a" onclick="pickZoneColor('#16a34a',this)">🟢</div>
+        <div class="zone-color-swatch" data-color="#ef4444" style="background:#ef4444" onclick="pickZoneColor('#ef4444',this)">🔴</div>
+      </div>
+      <input type="hidden" id="zone-input-color" value="#f97316">
+    </div>
+    <button class="place-btn" onclick="saveZone()"><span id="zone-save-btn-text">✅ Save Zone</span></button>
+    <button class="cancel-btn" onclick="document.getElementById('zone-modal').classList.remove('open')">Cancel</button>
+  </div>
+</div>
+
 <script>
 // ============================================================
 // DATA
@@ -1138,12 +1266,113 @@ async function saveOrderId(){
 }
 let savedAddresses = [];
 let deliveryZones = [
-  {id:'z1',name:'Zone A – Tauru',areas:'Main Tauru, Tauru Town, Surrounding areas',fee:30,color:'#f97316',active:true},
+  {id:'z1',name:'Main Tauru Zone',areas:'Main Tauru & surrounding area',fee:30,color:'#f97316',active:true},
 ];
+// NOTE: deliveryZones is now the single source of truth from code + Firestore 'zones' collection.
+// IndexedDB zones cache is intentionally NOT used to prevent stale old zones appearing.
+// Admin can edit/delete zones via the Zones tab; changes sync to Firestore.
+
+// ============================================================
+// DELIVERY ZONE POLYGON — updated from KML (Main Tauru, 68 pts)
+// Expanded north to include additional area vs previous version
+// Format: [lat, lng]
+// ============================================================
+const DELIVERY_POLYGON = [
+  [28.21540564111952,76.96144575425583],
+  [28.21430600408463,76.95686956614146],
+  [28.21676285937622,76.95676284332761],
+  [28.21717959749269,76.95453195194794],
+  [28.21785818888253,76.95237790036721],
+  [28.21851479904942,76.95087863158433],
+  [28.21974273224632,76.95095088275096],
+  [28.22150807564082,76.9509294678611],
+  [28.22453026181379,76.95108832623585],
+  [28.22396714152137,76.95317961982497],
+  [28.22603342732442,76.95362852592586],
+  [28.22613445351066,76.9513873972774],
+  [28.22617490684518,76.94942037434373],
+  [28.21582610604269,76.94939051895891],
+  [28.21465731821154,76.9484361420283],
+  [28.21466867953408,76.94598383756605],
+  [28.21287778217944,76.945155313796],
+  [28.21263622561574,76.94367336292699],
+  [28.21107998388028,76.9440465369776],
+  [28.21156848811206,76.94204676470409],
+  [28.21246507835122,76.94075131834666],
+  [28.21192868170408,76.93980324957522],
+  [28.21307878718889,76.93855676980368],
+  [28.21250476126427,76.93811759256062],
+  [28.2121872327662,76.93742171734075],
+  [28.21164931620265,76.93674279511733],
+  [28.21111826055792,76.93637715754005],
+  [28.21065798009905,76.93569210261516],
+  [28.20881983460421,76.93584422159938],
+  [28.2089154774765,76.93687401669446],
+  [28.20845707638694,76.93702687444714],
+  [28.20835771502665,76.938486655201],
+  [28.20741808363283,76.93907173313148],
+  [28.20771298327359,76.94054264540118],
+  [28.20713059699136,76.94149032326189],
+  [28.20631972148434,76.94084088017051],
+  [28.20588899860095,76.94145457324878],
+  [28.20555885524679,76.94251345565561],
+  [28.20563952109017,76.94369507753947],
+  [28.20621780945837,76.94353733156024],
+  [28.20637364215604,76.94252091315744],
+  [28.207715152534,76.94256154355078],
+  [28.20895286672516,76.94253621650357],
+  [28.20914050774893,76.94524772926071],
+  [28.20584822689724,76.94539254357741],
+  [28.20492106302442,76.9458959165242],
+  [28.20478746656564,76.94620807083977],
+  [28.2076688764729,76.94753784569092],
+  [28.20739490369302,76.94795272593612],
+  [28.20813509217556,76.94852803503646],
+  [28.20794480333021,76.94902708018672],
+  [28.20766987228918,76.94871079798438],
+  [28.20720465240278,76.94889356093229],
+  [28.2070909813458,76.94946840648933],
+  [28.20769942052456,76.94962149002366],
+  [28.20759263156686,76.95190748833873],
+  [28.20437866506351,76.95502035179875],
+  [28.20726510633863,76.95553424798345],
+  [28.20693694611055,76.961484520984],
+  [28.20903799465179,76.9616225194527],
+  [28.21078376813369,76.96158831308716],
+  [28.21102375239393,76.95701949216027],
+  [28.21141932044681,76.9569656778551],
+  [28.21245467946149,76.9571697366379],
+  [28.21247311460735,76.95825442444179],
+  [28.21285904339185,76.95810298825533],
+  [28.21335980623682,76.96135419324762],
+  [28.21540564111952,76.96144575425583]
+];
+
+// Ray-casting point-in-polygon — returns true if [lat,lng] is inside the delivery zone
+function isInsideDeliveryZone(lat, lng) {
+  const poly = DELIVERY_POLYGON;
+  let inside = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const xi = poly[i][1], yi = poly[i][0];
+    const xj = poly[j][1], yj = poly[j][0];
+    const intersect = ((yi > lat) !== (yj > lat)) &&
+      (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
 let riders = [];
 let riderEarnings=0, riderDeliveries=0, earningsHistory=[], selectedAddrType='Home', selectedPayMethod='card', adminCurFilter='all', unreadNotifs=0;
 let currentCatFilter='all', currentSortMode=0, priceMin=null, priceMax=null, searchQuery='';
 const sortModes=['Sort','Price ↑','Price ↓','Popular','Newest'];
+
+// Customer management state
+let bannedCustomers = new Set(); // stores uid strings
+let allCustomers    = [];        // loaded from Firestore
+
+// Rider picker state
+let riderPickerOrderId  = null;
+let riderPickerSelected = null;
 
 // Invite codes grant staff roles — any email can be admin/rider with correct code
 const INVITE_CODES = {
@@ -1281,7 +1510,7 @@ async function saveAllData(){
   if(!currentUser) return;
   for(const o of orders) await dbPutOrder(o).catch(()=>{});
   for(const a of savedAddresses) await dbPut('addresses',a).catch(()=>{});
-  for(const z of deliveryZones) await dbPut('zones',z).catch(()=>{});
+  // NOTE: zones are NOT saved to IndexedDB — Firestore is the only source of truth
   await dbSaveCart().catch(()=>{});
   if(currentUser.role==='rider') await dbSaveEarnings().catch(()=>{});
   for(const r of riders) await dbPut('riders_data',r).catch(()=>{});
@@ -1414,7 +1643,18 @@ async function loadAllData(){
       else { const a=await dbGetAll('addresses'); if(a.length) savedAddresses=a; }
     } else { const a=await dbGetAll('addresses'); if(a.length) savedAddresses=a; }
   }catch(e){ const a=await dbGetAll('addresses'); if(a.length) savedAddresses=a; }
-  const zones=await dbGetAll('zones'); if(zones.length) deliveryZones=zones;
+  // Load zones from Firestore ONLY — never from IndexedDB cache (prevents stale Zone A/B/C/D)
+  // Also purge any stale zones from IndexedDB so they never come back
+  dbClear('zones').catch(()=>{});
+  try{
+    if(fdb){
+      const zsnap = await fdb.collection('zones').get();
+      if(!zsnap.empty){
+        deliveryZones = zsnap.docs.map(d=>d.data());
+      }
+      // else keep the code-defined default (Main Tauru Zone)
+    }
+  }catch(e){ console.log('zones load err:',e); }
   await dbLoadCart();
   if(currentUser.role==='rider') await dbLoadEarnings();
   const rds=await dbGetAll('riders_data'); if(rds.length) riders=rds;
@@ -1652,6 +1892,25 @@ function handleStaffLogin(){
 // ============================================================
 function loginUser(user){
   currentUser=user;
+  // Check if this customer is banned
+  if(user.role==='customer' && fdb){
+    fdb.collection('users').doc(user.uid).get().then(doc=>{
+      if(doc.exists && doc.data().banned===true){
+        auth.signOut().catch(()=>{});
+        currentUser=null;
+        showToast('🚫 Your account has been suspended. Contact support.');
+        return;
+      }
+      // Not banned — proceed with normal login
+      _completeLogin(user);
+    }).catch(()=>_completeLogin(user));
+    return;
+  }
+  _completeLogin(user);
+}
+
+function _completeLogin(user){
+  currentUser=user;
   document.getElementById('screen-login').classList.remove('active');
   document.getElementById('screen-app').classList.add('active');
   document.getElementById('notif-btn').style.display='flex';
@@ -1815,105 +2074,6 @@ function updateCartBar(){
 // ============================================================
 let userLat=null, userLng=null;
 
-// ============================================================
-// DELIVERY ZONE BOUNDARY — Tauru (from KML)
-// ============================================================
-// Exact polygon from Google Earth KML file
-// Format: [longitude, latitude]
-const DELIVERY_ZONE_POLYGON = [
-    [76.96144575425583,28.21540564111952],
-    [76.95686956614146,28.21430600408463],
-    [76.95676284332761,28.21676285937622],
-    [76.95453195194794,28.21717959749269],
-    [76.95237790036721,28.21785818888253],
-    [76.95087863158433,28.21851479904942],
-    [76.95095088275096,28.21974273224632],
-    [76.9509294678611,28.22150807564082],
-    [76.95108832623585,28.22453026181379],
-    [76.95317961982497,28.22396714152137],
-    [76.95362852592586,28.22603342732442],
-    [76.9513873972774,28.22613445351066],
-    [76.94942037434373,28.22617490684518],
-    [76.94939051895891,28.21582610604269],
-    [76.9484361420283,28.21465731821154],
-    [76.94598383756605,28.21466867953408],
-    [76.945155313796,28.21287778217944],
-    [76.94367336292699,28.21263622561574],
-    [76.9440465369776,28.21107998388028],
-    [76.94204676470409,28.21156848811206],
-    [76.94075131834666,28.21246507835122],
-    [76.93980324957522,28.21192868170408],
-    [76.93855676980368,28.21307878718889],
-    [76.93811759256062,28.21250476126427],
-    [76.93742171734075,28.2121872327662],
-    [76.93674279511733,28.21164931620265],
-    [76.93637715754005,28.21111826055792],
-    [76.93569210261516,28.21065798009905],
-    [76.93584422159938,28.20881983460421],
-    [76.93687401669446,28.2089154774765],
-    [76.93702687444714,28.20845707638694],
-    [76.938486655201,28.20835771502665],
-    [76.93907173313148,28.20741808363283],
-    [76.94054264540118,28.20771298327359],
-    [76.94149032326189,28.20713059699136],
-    [76.94084088017051,28.20631972148434],
-    [76.94145457324878,28.20588899860095],
-    [76.94251345565561,28.20555885524679],
-    [76.94369507753947,28.20563952109017],
-    [76.94353733156024,28.20621780945837],
-    [76.94252091315744,28.20637364215604],
-    [76.94256154355078,28.207715152534],
-    [76.94253621650357,28.20895286672516],
-    [76.94524772926071,28.20914050774893],
-    [76.94539254357741,28.20584822689724],
-    [76.9458959165242,28.20492106302442],
-    [76.94620807083977,28.20478746656564],
-    [76.94753784569092,28.2076688764729],
-    [76.94795272593612,28.20739490369303],
-    [76.94852803503646,28.20813509217556],
-    [76.94902708018672,28.20794480333021],
-    [76.94871079798438,28.20766987228918],
-    [76.94889356093229,28.20720465240278],
-    [76.94946840648933,28.2070909813458],
-    [76.94962149002366,28.20769942052456],
-    [76.95190748833873,28.20759263156686],
-    [76.95502035179875,28.20437866506351],
-    [76.95553424798345,28.20726510633863],
-    [76.961484520984,28.20693694611055],
-    [76.9616225194527,28.20903799465179],
-    [76.96158831308716,28.21078376813369],
-    [76.95701949216027,28.21102375239393],
-    [76.9569656778551,28.21141932044682],
-    [76.9571697366379,28.21245467946149],
-    [76.95825442444179,28.21247311460735],
-    [76.95810298825533,28.21285904339184],
-    [76.96135419324762,28.21335980623682],
-    [76.96144575425583,28.21540564111952]
-];
-
-// Ray-casting algorithm — checks if a point is inside the polygon
-function isInsideDeliveryZone(lat, lng){
-  const poly = DELIVERY_ZONE_POLYGON;
-  let inside = false;
-  for(let i=0, j=poly.length-1; i<poly.length; j=i++){
-    const xi=poly[i][0], yi=poly[i][1];
-    const xj=poly[j][0], yj=poly[j][1];
-    const intersect = ((yi>lat)!==(yj>lat)) &&
-      (lng < (xj-xi)*(lat-yi)/(yj-yi)+xi);
-    if(intersect) inside=!inside;
-  }
-  return inside;
-}
-
-// Check if GPS coordinates are in delivery zone — call before placing order
-function checkDeliveryZone(){
-  if(!userLat || !userLng){
-    // No GPS — allow order but warn (they typed address manually)
-    return true;
-  }
-  return isInsideDeliveryZone(userLat, userLng);
-}
-
 function getGPSLocation(){
   const btn = document.getElementById('gps-btn-text');
   btn.textContent='📡 Getting location…';
@@ -1928,23 +2088,27 @@ function getGPSLocation(){
     pos=>{
       userLat=pos.coords.latitude;
       userLng=pos.coords.longitude;
-      // Check if inside delivery zone immediately
-      const inZone = isInsideDeliveryZone(userLat, userLng);
-      if(inZone){
-        btn.textContent='✅ Location in delivery zone!';
-        document.getElementById('gps-btn').style.background='linear-gradient(135deg,#16a34a,#15803d)';
-        showToast('✅ You are inside our delivery zone!');
-      } else {
-        btn.textContent='❌ Outside delivery zone';
-        document.getElementById('gps-btn').style.background='linear-gradient(135deg,#e11d48,#be123c)';
-        showToast('❌ Your location is outside our delivery zone (Tauru only)');
-      }
       document.getElementById('gps-btn').style.opacity='1';
       reverseGeocode(userLat, userLng, 'cust-addr');
-      // Show map preview
       const mapFrame=document.getElementById('gps-map-iframe');
-      mapFrame.src=`https://maps.google.com/maps?q=${userLat},${userLng}&z=15&output=embed&t=m`;
+      mapFrame.src=`https://maps.google.com/maps?q=${userLat},${userLng}&z=17&output=embed&t=m`;
       document.getElementById('gps-map-preview').style.display='block';
+      // Zone check — show instant feedback
+      const inZone = isInsideDeliveryZone(userLat, userLng);
+      const banner = document.getElementById('zone-check-banner');
+      if(inZone){
+        btn.textContent='✅ Location found!';
+        document.getElementById('gps-btn').style.background='linear-gradient(135deg,#16a34a,#15803d)';
+        banner.style.display='flex'; banner.style.background='#dcfce7'; banner.style.borderColor='#16a34a';
+        banner.innerHTML='<span style="font-size:20px">✅</span><div><div style="font-weight:800;font-size:13px;color:#166534">You\'re in our delivery zone!</div><div style="font-size:11px;color:#166534;margin-top:2px">Main Tauru · We deliver here 🎉</div></div>';
+        showToast('✅ Great! We deliver to your location.');
+      } else {
+        btn.textContent='⚠️ Outside zone';
+        document.getElementById('gps-btn').style.background='linear-gradient(135deg,#ef4444,#dc2626)';
+        banner.style.display='flex'; banner.style.background='#fee2e2'; banner.style.borderColor='#ef4444';
+        banner.innerHTML='<span style="font-size:20px">❌</span><div><div style="font-weight:800;font-size:13px;color:#991b1b">Outside delivery zone</div><div style="font-size:11px;color:#991b1b;margin-top:2px">We currently deliver only within Main Tauru. Sorry!</div></div>';
+        showToast('❌ Sorry, we don\'t deliver to your location yet.');
+      }
     },
     err=>{
       btn.textContent='Use My Current Location';
@@ -2019,6 +2183,9 @@ function openCheckout(){
     document.getElementById('gps-btn-text').textContent='Use My Current Location';
   }
   document.getElementById('gps-map-preview').style.display='none';
+  // Reset zone banner
+  const banner=document.getElementById('zone-check-banner');
+  if(banner) banner.style.display='none';
   document.getElementById('checkout-content').style.display='block';
   document.getElementById('success-screen').classList.remove('show');
   renderCartItems(); populateZoneDropdown();
@@ -2124,14 +2291,11 @@ async function placeCODOrder() {
   if (!phone) { showToast('⚠️ Enter your phone number'); return; }
   if (!addr)  { showToast('⚠️ Enter delivery address');  return; }
   if (!Object.keys(cart).length) { showToast('🛒 Cart is empty!'); return; }
-  // Check if delivery location is inside Tauru delivery zone
-  if(userLat && userLng && !isInsideDeliveryZone(userLat, userLng)){
-    showToast('❌ Sorry! We only deliver within Tauru area. Your location is outside our delivery zone.');
-    // Show zone warning in checkout
-    const addrField = document.getElementById('cust-addr');
-    addrField.style.borderColor='#e11d48';
-    addrField.style.boxShadow='0 0 0 3px rgba(225,29,72,.15)';
-    setTimeout(()=>{addrField.style.borderColor='';addrField.style.boxShadow='';},3000);
+  // Hard zone block — if GPS coords known and outside polygon, reject
+  if (userLat && userLng && !isInsideDeliveryZone(userLat, userLng)) {
+    const banner=document.getElementById('zone-check-banner');
+    if(banner){ banner.style.display='flex'; banner.style.background='#fee2e2'; banner.style.borderColor='#ef4444'; banner.innerHTML='<span style="font-size:20px">❌</span><div><div style="font-weight:800;font-size:13px;color:#991b1b">Cannot place order — outside delivery zone</div><div style="font-size:11px;color:#991b1b;margin-top:2px">We deliver only within Main Tauru. Sorry!</div></div>'; banner.scrollIntoView({behavior:'smooth',block:'center'}); }
+    showToast('❌ Your location is outside our delivery zone.');
     return;
   }
   const items = Object.values(cart);
@@ -2212,9 +2376,11 @@ function initiatePayment(){
   const addr=document.getElementById('cust-addr').value.trim();
   if(!name||!phone||!addr){showToast('⚠️ Fill all delivery details');return;}
   if(!Object.keys(cart).length){showToast('🛒 Cart is empty!');return;}
-  // Check delivery zone
-  if(userLat && userLng && !isInsideDeliveryZone(userLat, userLng)){
-    showToast('❌ Sorry! We only deliver within Tauru area. Your location is outside our delivery zone.');
+  // Hard zone block
+  if (userLat && userLng && !isInsideDeliveryZone(userLat, userLng)) {
+    const banner=document.getElementById('zone-check-banner');
+    if(banner){ banner.style.display='flex'; banner.style.background='#fee2e2'; banner.style.borderColor='#ef4444'; banner.innerHTML='<span style="font-size:20px">❌</span><div><div style="font-weight:800;font-size:13px;color:#991b1b">Cannot place order — outside delivery zone</div><div style="font-size:11px;color:#991b1b;margin-top:2px">We deliver only within Main Tauru. Sorry!</div></div>'; banner.scrollIntoView({behavior:'smooth',block:'center'}); }
+    showToast('❌ Your location is outside our delivery zone.');
     return;
   }
   const items=Object.values(cart);
@@ -2485,29 +2651,204 @@ function renderAdminOrders(filter){
       </div>
     </div>`).join('');
 }
-async function assignRider(oid){
-  const o=orders.find(x=>x.id===oid);if(!o)return;
-  const onlineRiders=riders.filter(r=>r.online);
-  if(!onlineRiders.length){showToast('⚠️ No riders online. Rider must be online to receive orders.');return;}
-  o.status='assigned'; o.rider=onlineRiders[0].name;
+// ── FEATURE 2: Rider Picker — admin sees all riders and taps to choose ──
+function assignRider(oid){
+  openRiderPicker(oid);
+}
+
+function openRiderPicker(oid){
+  const o = orders.find(x=>x.id===oid);
+  if(!o){ showToast('⚠️ Order not found'); return; }
+  riderPickerOrderId  = oid;
+  riderPickerSelected = null;
+
+  // Populate order preview
+  document.getElementById('rp-order-id').textContent   = o.id;
+  document.getElementById('rp-order-info').textContent = `📍 ${o.customer} · ${o.address.slice(0,40)}… · ₹${o.total}`;
+
+  // Render rider list — show ALL riders, online first
+  const sorted = [...riders].sort((a,b)=> (b.online?1:0) - (a.online?1:0));
+  const el = document.getElementById('rider-pick-list');
+
+  if(!sorted.length){
+    el.innerHTML = `<div class="no-riders-msg"><div class="nr-icon">🚴</div><p style="font-weight:700;font-size:14px">No riders added yet.</p><p style="font-size:12px;margin-top:4px">Go to Riders tab to add a rider first.</p></div>`;
+    document.getElementById('rp-confirm-btn').disabled = true;
+    document.getElementById('rp-confirm-btn').textContent = 'No riders available';
+  } else {
+    el.innerHTML = sorted.map(r=>`
+      <div class="rider-pick-card" id="rpc-${r.id}" onclick="selectRiderInPicker('${r.id}')">
+        <div class="rpc-av">
+          ${r.name[0].toUpperCase()}
+          <div class="rpc-online-dot ${r.online?'on':'off'}"></div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div class="rpc-name">${r.name}</div>
+          <div class="rpc-meta">📞 ${r.phone||'—'} · ${r.online ? '<span style="color:#16a34a;font-weight:800">🟢 Online</span>' : '<span style="color:#9ca3af">⚫ Offline</span>'}</div>
+          <div class="rpc-stats">📦 ${r.deliveries||0} deliveries · ⭐ ${r.rating||5.0}</div>
+        </div>
+        <div class="rpc-check" id="rpc-chk-${r.id}"></div>
+      </div>`).join('');
+    document.getElementById('rp-confirm-btn').disabled = true;
+    document.getElementById('rp-confirm-btn').textContent = 'Select a rider to assign';
+  }
+
+  document.getElementById('rider-picker-modal').classList.add('open');
+}
+
+function selectRiderInPicker(rid){
+  riderPickerSelected = rid;
+  // Clear all selections
+  document.querySelectorAll('.rider-pick-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('[id^="rpc-chk-"]').forEach(c=>{ c.textContent=''; });
+  // Highlight selected
+  document.getElementById(`rpc-${rid}`)?.classList.add('selected');
+  document.getElementById(`rpc-chk-${rid}`).textContent = '✓';
+  // Enable confirm button
+  const r = riders.find(x=>x.id===rid);
+  const btn = document.getElementById('rp-confirm-btn');
+  btn.disabled = false;
+  btn.textContent = `✅ Assign ${r?.name||'Rider'}`;
+}
+
+function closeRiderPicker(){
+  document.getElementById('rider-picker-modal').classList.remove('open');
+  riderPickerOrderId  = null;
+  riderPickerSelected = null;
+}
+
+async function confirmRiderAssign(){
+  if(!riderPickerOrderId || !riderPickerSelected){ showToast('⚠️ Select a rider first'); return; }
+  const o = orders.find(x=>x.id===riderPickerOrderId);
+  const r = riders.find(x=>x.id===riderPickerSelected);
+  if(!o||!r){ showToast('⚠️ Data error, please retry'); return; }
+
+  const btn = document.getElementById('rp-confirm-btn');
+  btn.disabled=true; btn.textContent='⏳ Assigning…';
+
+  o.status='assigned'; o.rider=r.name;
   try{
     await dbPutOrder({...o, createdAt:o.createdAt||Date.now()});
+    closeRiderPicker();
     renderAdminOrders(); updateAdminStats(); renderRiderList();
-    pushNotif('🚴 Rider Assigned',`${o.rider} assigned to ${oid}`,'rider');
-    showToast(`🚴 ${o.rider} assigned to ${oid}!`);
+    pushNotif('🚴 Rider Assigned',`${r.name} assigned to ${o.id}`,'rider');
+    showToast(`✅ ${r.name} assigned to ${o.id}!`);
   }catch(e){
-    showToast('❌ Failed to assign rider. Check connection.');
-    console.log('assignRider err:',e);
+    btn.disabled=false; btn.textContent=`✅ Assign ${r.name}`;
+    showToast('❌ Failed to assign. Check connection.');
+    console.log('confirmRiderAssign err:',e);
   }
+}
+
+// Close picker on overlay tap
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('rider-picker-modal').addEventListener('click',function(e){
+    if(e.target===this) closeRiderPicker();
+  });
+});
+
+// ── FEATURE 1: Customer Management ──
+async function loadCustomers(){
+  if(!fdb) return;
+  try{
+    const snap = await fdb.collection('users').where('role','==','customer').get();
+    allCustomers = snap.docs.map(d=>({uid:d.id,...d.data()}));
+    // Load banned list from Firestore settings doc
+    const banDoc = await fdb.collection('settings').doc('bannedCustomers').get();
+    if(banDoc.exists && banDoc.data().uids){
+      bannedCustomers = new Set(banDoc.data().uids);
+    }
+  }catch(e){ console.log('loadCustomers err:',e); }
+}
+
+async function saveBannedList(){
+  if(!fdb) return;
+  fdb.collection('settings').doc('bannedCustomers')
+    .set({uids:[...bannedCustomers], updatedAt:Date.now()})
+    .catch(()=>{});
+}
+
+async function renderCustomers(query=''){
+  await loadCustomers();
+  const list = query
+    ? allCustomers.filter(c=>(c.name||'').toLowerCase().includes(query.toLowerCase()) || (c.email||'').toLowerCase().includes(query.toLowerCase()))
+    : allCustomers;
+
+  // Stats
+  const banned = allCustomers.filter(c=>bannedCustomers.has(c.uid)).length;
+  document.getElementById('cs-total').textContent  = allCustomers.length;
+  document.getElementById('cs-active').textContent = allCustomers.length - banned;
+  document.getElementById('cs-banned').textContent = banned;
+
+  const el = document.getElementById('customers-list');
+  if(!list.length){
+    el.innerHTML='<div class="empty-state"><span class="empty-icon">👥</span><p>No customers found.</p></div>';
+    return;
+  }
+
+  el.innerHTML = list.map((c,i)=>{
+    const isBanned   = bannedCustomers.has(c.uid);
+    const orderCount = orders.filter(o=>o.customerEmail===c.email).length;
+    const totalSpent = orders.filter(o=>o.customerEmail===c.email).reduce((s,o)=>s+o.total,0);
+    return `
+    <div class="cust-card ${isBanned?'banned':''}" style="animation-delay:${i*0.04}s">
+      <div class="cust-av ${isBanned?'banned-av':''}">${(c.name||'U')[0].toUpperCase()}</div>
+      <div class="cust-info">
+        <div class="cust-name-txt">${c.name||'Unknown'}</div>
+        <div class="cust-email-txt">${c.email||c.phone||'—'}</div>
+        <div class="cust-meta-row">
+          <span class="cust-badge ${isBanned?'banned-badge':'active-badge'}">${isBanned?'🚫 Banned':'✅ Active'}</span>
+          <span class="cust-badge orders-badge">📦 ${orderCount} orders</span>
+          ${totalSpent>0?`<span class="cust-badge orders-badge">₹${totalSpent}</span>`:''}
+        </div>
+      </div>
+      <div class="cust-actions">
+        ${isBanned
+          ? `<button class="btn-ban do-unban" onclick="unbanCustomer('${c.uid}')">✅ Unban</button>`
+          : `<button class="btn-ban do-ban"   onclick="banCustomer('${c.uid}','${(c.name||'').replace(/'/g,"\\'")}')">🚫 Ban</button>`
+        }
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function banCustomer(uid, name){
+  if(!confirm(`Ban ${name}? They won't be able to place orders.`)) return;
+  bannedCustomers.add(uid);
+  // Write banned flag to their user doc too so login check can block them
+  fdb.collection('users').doc(uid).set({banned:true},{merge:true}).catch(()=>{});
+  await saveBannedList();
+  renderCustomers(document.getElementById('cust-search-input').value);
+  showToast(`🚫 ${name} has been banned.`);
+}
+
+async function unbanCustomer(uid){
+  bannedCustomers.delete(uid);
+  fdb.collection('users').doc(uid).set({banned:false},{merge:true}).catch(()=>{});
+  await saveBannedList();
+  const c = allCustomers.find(x=>x.uid===uid);
+  renderCustomers(document.getElementById('cust-search-input').value);
+  showToast(`✅ ${c?.name||'Customer'} has been unbanned.`);
+}
+
+function filterCustomers(q){
+  document.getElementById('cust-search-clear').style.display = q?'block':'none';
+  renderCustomers(q);
+}
+
+function clearCustomerSearch(){
+  document.getElementById('cust-search-input').value='';
+  document.getElementById('cust-search-clear').style.display='none';
+  renderCustomers();
 }
 function adminFilter(f,el){adminCurFilter=f;document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderAdminOrders(f);}
 function switchAdminTab(tab,el){
   document.querySelectorAll('.admin-stab').forEach(t=>t.classList.remove('active'));el.classList.add('active');
-  ['orders','analytics','riders','zones','products'].forEach(t=>{
+  ['orders','analytics','riders','customers','zones','products'].forEach(t=>{
     document.getElementById(`admin-tab-${t}`).style.display=t===tab?'flex':'none';
   });
   if(tab==='analytics') renderAnalytics();
   if(tab==='riders')    renderRiders();
+  if(tab==='customers') renderCustomers();
   if(tab==='zones')     renderAdminZones();
   if(tab==='products')  renderAdminProducts('all');
 }
@@ -2925,15 +3266,106 @@ function assignOrderToRider(rid){
 // ZONES
 // ============================================================
 function renderAdminZones(){
-  document.getElementById('admin-zones-list').innerHTML=deliveryZones.map(z=>`
+  const el = document.getElementById('admin-zones-list');
+  if(!deliveryZones.length){
+    el.innerHTML='<div class="empty-state"><span class="empty-icon">🗺️</span><p>No zones yet. Add one above.</p></div>';
+    return;
+  }
+  el.innerHTML = deliveryZones.map(z=>`
     <div class="zone-card">
       <div class="zone-dot" style="background:${z.color}"></div>
-      <div class="zone-info"><div class="zone-name">${z.name}</div><div class="zone-areas">${z.areas}</div><div style="font-size:11px;color:var(--or1);margin-top:3px;font-weight:700">Fee: ₹${z.fee}</div></div>
-      <button class="zone-toggle ${z.active?'on':''}" onclick="toggleZone('${z.id}')"></button>
+      <div class="zone-info">
+        <div class="zone-name">${z.name}</div>
+        <div class="zone-areas">${z.areas}</div>
+        <div style="font-size:11px;color:var(--or1);margin-top:3px;font-weight:700">₹${z.fee} delivery fee</div>
+      </div>
+      <div class="zone-action-row">
+        <button class="zone-toggle ${z.active?'on':''}" onclick="toggleZone('${z.id}')" title="${z.active?'Disable':'Enable'} zone"></button>
+        <button class="zone-edit-btn" onclick="openZoneModal('${z.id}')">✏️</button>
+        <button class="zone-del-btn"  onclick="deleteZone('${z.id}','${z.name.replace(/'/g,"\\'")}')">🗑️</button>
+      </div>
     </div>`).join('');
 }
-function toggleZone(id){const z=deliveryZones.find(x=>x.id===id);if(!z)return;z.active=!z.active;dbPut('zones',z).catch(()=>{});renderAdminZones();populateZoneDropdown();showToast(`${z.active?'✅':'❌'} ${z.name} ${z.active?'enabled':'disabled'}`);}
-function addZone(){const name=prompt('Zone name:');if(!name)return;const areas=prompt('Areas covered:');const fee=parseInt(prompt('Delivery fee (₹):')||'50');const colors=['#8b5cf6','#06b6d4','#ec4899','#84cc16'];deliveryZones.push({id:'z'+Date.now(),name,areas:areas||'',fee,color:colors[deliveryZones.length%4],active:true});renderAdminZones();populateZoneDropdown();showToast('✅ Zone added!');}
+
+function openZoneModal(zid){
+  const isEdit = !!zid;
+  document.getElementById('zone-modal-title').textContent = isEdit ? '✏️ Edit Zone' : '➕ Add Zone';
+  document.getElementById('zone-save-btn-text').textContent = isEdit ? '✅ Save Changes' : '✅ Add Zone';
+  document.getElementById('zone-edit-id').value = zid||'';
+  if(isEdit){
+    const z = deliveryZones.find(x=>x.id===zid);
+    if(!z) return;
+    document.getElementById('zone-input-name').value  = z.name;
+    document.getElementById('zone-input-areas').value = z.areas;
+    document.getElementById('zone-input-fee').value   = z.fee;
+    document.getElementById('zone-input-color').value = z.color;
+    pickZoneColor(z.color, null);
+  } else {
+    document.getElementById('zone-input-name').value  = '';
+    document.getElementById('zone-input-areas').value = '';
+    document.getElementById('zone-input-fee').value   = '30';
+    document.getElementById('zone-input-color').value = '#f97316';
+    pickZoneColor('#f97316', null);
+  }
+  document.getElementById('zone-modal').classList.add('open');
+}
+
+function pickZoneColor(color, el){
+  document.getElementById('zone-input-color').value = color;
+  document.querySelectorAll('.zone-color-swatch').forEach(s=>{
+    s.classList.toggle('selected', s.dataset.color===color);
+  });
+}
+
+async function saveZone(){
+  const name  = document.getElementById('zone-input-name').value.trim();
+  const areas = document.getElementById('zone-input-areas').value.trim();
+  const fee   = parseInt(document.getElementById('zone-input-fee').value)||0;
+  const color = document.getElementById('zone-input-color').value||'#f97316';
+  const editId= document.getElementById('zone-edit-id').value;
+  if(!name){ showToast('⚠️ Enter a zone name'); return; }
+
+  if(editId){
+    // Edit existing
+    const idx = deliveryZones.findIndex(z=>z.id===editId);
+    if(idx>=0){
+      deliveryZones[idx] = {...deliveryZones[idx], name, areas, fee, color};
+      if(fdb) fdb.collection('zones').doc(editId).set(deliveryZones[idx]).catch(()=>{});
+      showToast('✅ Zone updated!');
+    }
+  } else {
+    // Add new
+    const z = {id:'z'+Date.now(), name, areas, fee, color, active:true};
+    deliveryZones.push(z);
+    if(fdb) fdb.collection('zones').doc(z.id).set(z).catch(()=>{});
+    showToast('✅ Zone added!');
+  }
+  document.getElementById('zone-modal').classList.remove('open');
+  renderAdminZones();
+  populateZoneDropdown();
+}
+
+async function deleteZone(zid, name){
+  if(!confirm(`Delete zone "${name}"? This cannot be undone.`)) return;
+  deliveryZones = deliveryZones.filter(z=>z.id!==zid);
+  if(fdb) fdb.collection('zones').doc(zid).delete().catch(()=>{});
+  renderAdminZones();
+  populateZoneDropdown();
+  showToast(`🗑️ Zone "${name}" deleted.`);
+}
+
+function toggleZone(id){
+  const z=deliveryZones.find(x=>x.id===id);
+  if(!z) return;
+  z.active=!z.active;
+  if(fdb) fdb.collection('zones').doc(id).set(z).catch(()=>{});
+  renderAdminZones();
+  populateZoneDropdown();
+  showToast(`${z.active?'✅':'❌'} ${z.name} ${z.active?'enabled':'disabled'}`);
+}
+
+// Keep addZone as a shortcut to the modal
+function addZone(){ openZoneModal(null); }
 
 // ============================================================
 // RIDER VIEW
@@ -3134,21 +3566,7 @@ initDB().then(()=>{
 }).catch(()=>{});
 
 // Close modals on overlay click
-let _lastShopScroll = 0;
-function handleShopScroll(el){
-  const cur = el.scrollTop;
-  const wrap = document.querySelector('.search-wrap');
-  if(!wrap) return;
-  if(cur > _lastShopScroll && cur > 50){
-    // Scrolling DOWN — hide search bar
-    wrap.classList.add('hidden');
-  } else {
-    // Scrolling UP or at top — show search bar
-    wrap.classList.remove('hidden');
-  }
-  _lastShopScroll = cur <= 0 ? 0 : cur;
-}
-['checkout-modal','add-addr-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+['checkout-modal','add-addr-modal','zone-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 document.getElementById('track-modal').addEventListener('click',function(e){if(e.target===this)closeTrackModal();});
 document.getElementById('notif-panel').addEventListener('click',function(e){if(e.target===this)toggleNotifPanel();});
 </script>
