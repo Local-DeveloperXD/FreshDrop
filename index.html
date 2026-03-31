@@ -637,7 +637,7 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
         <div class="filter-chip" id="fcat-drinks"   onclick="filterCategory('drinks',this)">🥤 Drinks</div>
         <div class="filter-chip" id="fcat-noodles"  onclick="filterCategory('noodles',this)">🍜 Noodles</div>
       </div>
-      <div class="scroll-area">
+      <div class="scroll-area" id="shop-scroll-area" onscroll="handleShopScroll(this)">
         <div class="sec-hdr"><h3 id="products-title">All Products</h3><span id="products-count"></span></div>
         <div class="products-grid" id="products-grid"></div>
       </div>
@@ -3133,37 +3133,21 @@ initDB().then(()=>{
   });
 }).catch(()=>{});
 
-// ── Hide search bar on scroll down, show on scroll up ──
-(function(){
-  let lastScroll = 0;
-  // Attach listener once the DOM is ready
-  function attachShopScroll(){
-    const area = document.querySelector('#sub-shop .scroll-area');
-    const wrap = document.querySelector('.search-wrap');
-    if(!area || !wrap) return;
-    area.addEventListener('scroll', ()=>{
-      const cur = area.scrollTop;
-      if(cur > lastScroll && cur > 40){
-        // Scrolling DOWN — hide search
-        wrap.classList.add('hidden');
-      } else {
-        // Scrolling UP — show search
-        wrap.classList.remove('hidden');
-      }
-      lastScroll = cur <= 0 ? 0 : cur;
-    }, {passive:true});
-  }
-  // Wait for app to load before attaching
-  setTimeout(attachShopScroll, 2000);
-  // Also attach whenever switchView is called
-  const origSwitchView = window.switchView;
-  window.switchView = function(view, el){
-    origSwitchView && origSwitchView(view, el);
-    if(view === 'customer') setTimeout(attachShopScroll, 300);
-  };
-})();
-
 // Close modals on overlay click
+let _lastShopScroll = 0;
+function handleShopScroll(el){
+  const cur = el.scrollTop;
+  const wrap = document.querySelector('.search-wrap');
+  if(!wrap) return;
+  if(cur > _lastShopScroll && cur > 50){
+    // Scrolling DOWN — hide search bar
+    wrap.classList.add('hidden');
+  } else {
+    // Scrolling UP or at top — show search bar
+    wrap.classList.remove('hidden');
+  }
+  _lastShopScroll = cur <= 0 ? 0 : cur;
+}
 ['checkout-modal','add-addr-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 document.getElementById('track-modal').addEventListener('click',function(e){if(e.target===this)closeTrackModal();});
 document.getElementById('notif-panel').addEventListener('click',function(e){if(e.target===this)toggleNotifPanel();});
