@@ -101,42 +101,35 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:150px}
 .scroll-area::-webkit-scrollbar{display:none}
 
-/* CUSTOMER HEADER — sticky, never causes reflow below it */
+/* CUSTOMER HEADER */
 .cust-header{
   background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);
-  flex-shrink:0;
-  /* overflow:hidden clips the inner content as it slides up */
-  overflow:hidden;
-  /* Height transitions smoothly between expanded and 0 */
-  will-change:height;
-  -webkit-transform:translateZ(0);
-  transform:translateZ(0);
-}
-
-/* COLLAPSIBLE INNER — this is what actually moves, not the header */
-.cust-header-inner{
   padding:16px 18px 14px;
-  /* translateY slides it up, opacity fades — both GPU-only */
+  flex-shrink:0;
+  /* translateY slides it off the top — pure GPU, no reflow */
   -webkit-transform:translateY(0);
   transform:translateY(0);
-  opacity:1;
+  /* negative margin fills the gap left behind after slide */
+  margin-top:0;
   -webkit-transition:
-    -webkit-transform 0.28s cubic-bezier(0.4,0,0.2,1),
-    opacity           0.22s cubic-bezier(0.4,0,0.2,1);
+    -webkit-transform 0.3s cubic-bezier(0.4,0,0.2,1),
+    margin-top        0.3s cubic-bezier(0.4,0,0.2,1);
   transition:
-    transform         0.28s cubic-bezier(0.4,0,0.2,1),
-    opacity           0.22s cubic-bezier(0.4,0,0.2,1);
-  will-change:transform,opacity;
+    transform  0.3s cubic-bezier(0.4,0,0.2,1),
+    margin-top 0.3s cubic-bezier(0.4,0,0.2,1);
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
+  will-change:transform;
+  /* z-index keeps it above filter bar during animation */
+  position:relative;
+  z-index:2;
 }
-.cust-header-inner.hide{
-  /* Negative value = full height of inner — set by JS */
-  -webkit-transform:translateY(var(--slide-up, -100%));
-  transform:translateY(var(--slide-up, -100%));
-  opacity:0;
+.cust-header.sh-hidden{
+  /* JS sets --hdr-h to the exact pixel height */
+  -webkit-transform:translateY(calc(-1 * var(--hdr-h, 120px)));
+  transform:translateY(calc(-1 * var(--hdr-h, 120px)));
+  margin-top:calc(-1 * var(--hdr-h, 120px));
 }
-
 .user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .user-info{display:flex;align-items:center;gap:10px}
 .user-avatar{width:36px;height:36px;background:var(--or1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;border:2px solid rgba(255,255,255,.3);flex-shrink:0}
@@ -149,26 +142,12 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 /* SEARCH BAR */
 .search-wrap{position:relative}
 .search-bar{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.18);border-radius:14px;padding:12px 16px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2)}
-.search-bar input{background:none;border:none;outline:none;color:#fff;font-size:14px;flex:1;font-family:'Nunito',sans-serif;font-weight:600;-webkit-appearance:none;appearance:none}
+.search-bar input{background:none;border:none;outline:none;color:#fff;font-size:14px;flex:1;font-family:'Nunito',sans-serif;font-weight:600;-webkit-appearance:none}
 .search-bar input::placeholder{color:rgba(255,255,255,.55)}
-
-/* SEARCH SUGGESTIONS — position:fixed so it's NEVER clipped by parent overflow:hidden */
-.search-suggestions{
-  position:fixed;
-  /* top is set by JS to sit right below the search bar */
-  top:var(--sugg-top, 140px);
-  left:14px;right:14px;
-  background:#fff;
-  border-radius:var(--r-sm);
-  box-shadow:var(--shadow-lg);
-  z-index:200;
-  overflow:hidden;
-  display:none;
-  -webkit-animation:slideUp .2s ease;
-  animation:slideUp .2s ease;
-}
+/* position:fixed — floats above everything, never clipped by parent overflow */
+.search-suggestions{position:fixed;top:var(--sugg-top,150px);left:12px;right:12px;background:#fff;border-radius:var(--r-sm);box-shadow:var(--shadow-lg);z-index:200;overflow:hidden;display:none;animation:slideUp .2s ease}
 .search-suggestions.show{display:block}
-.sugg-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;-webkit-transition:background .15s;transition:background .15s;border-bottom:1px solid #fef3c7;font-size:13px;font-weight:700}
+.sugg-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .15s;border-bottom:1px solid #fef3c7;font-size:13px;font-weight:700}
 .sugg-item:last-child{border-bottom:none}
 .sugg-item:hover,.sugg-item:active{background:var(--or3)}
 .sugg-icon{font-size:20px}
@@ -655,25 +634,24 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 
     <!-- SHOP SUB-VIEW -->
     <div class="cust-subview active" id="sub-shop">
-      <div class="cust-header" id="shop-header">
-        <div class="cust-header-inner" id="shop-header-inner">
-          <div class="user-row">
-            <div class="user-info">
-              <div class="user-avatar" id="cust-avatar">U</div>
-              <div><div class="user-name" id="cust-name-badge">User</div><div class="user-sub">What do you need today?</div></div>
-            </div>
-            <button class="header-notif" onclick="toggleNotifPanel()">🔔<div class="header-notif-dot" id="hdr-notif-dot"></div></button>
+      <div class="cust-header">
+        <div class="user-row">
+          <div class="user-info">
+            <div class="user-avatar" id="cust-avatar">U</div>
+            <div><div class="user-name" id="cust-name-badge">User</div><div class="user-sub">What do you need today?</div></div>
           </div>
-          <div class="search-wrap" id="search-wrap">
-            <div class="search-bar">
-              <span>🔍</span>
-              <input type="text" id="search-input" placeholder="Search groceries, brands…" oninput="onSearchInput(this.value)" onblur="setTimeout(()=>hideSuggestions(),200)">
-              <span id="search-clear" onclick="clearSearch()" style="cursor:pointer;display:none;font-size:16px">✕</span>
-            </div>
-            <div class="search-suggestions" id="search-suggestions"></div>
+          <button class="header-notif" onclick="toggleNotifPanel()">🔔<div class="header-notif-dot" id="hdr-notif-dot"></div></button>
+        </div>
+        <div class="search-wrap">
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" id="search-input" placeholder="Search groceries, brands…" oninput="onSearchInput(this.value)" onblur="setTimeout(()=>hideSuggestions(),200)">
+            <span id="search-clear" onclick="clearSearch()" style="cursor:pointer;display:none;font-size:16px">✕</span>
           </div>
+          <div class="search-suggestions" id="search-suggestions"></div>
         </div>
       </div>
+      <!-- Filter bar -->
       <!-- Free delivery promo banner -->
       <div style="background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;padding:8px 16px;font-size:12px;font-weight:800;text-align:center;flex-shrink:0">
         🎉 FREE delivery on orders above ₹1000!
@@ -686,7 +664,6 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
         <div class="filter-chip" id="fcat-noodles"  onclick="filterCategory('noodles',this)">🍜 Noodles</div>
       </div>
       <div class="scroll-area" id="shop-scroll">
-        <div class="sec-hdr"><h3 id="products-title">All Products</h3><span id="products-count"></span></div>
         <div class="products-grid" id="products-grid"></div>
       </div>
     </div>
@@ -3187,131 +3164,79 @@ document.getElementById('track-modal').addEventListener('click',function(e){if(e
 document.getElementById('notif-panel').addEventListener('click',function(e){if(e.target===this)toggleNotifPanel();});
 
 // ============================================================
-// HEADER COLLAPSE ON SCROLL — glitch-free, overlap-free
+// HEADER HIDE / SHOW ON SCROLL
+// Works on every device. No wrapper div needed.
 // ============================================================
 (function(){
-  var header     = null;
-  var inner      = null;
-  var scrollEl   = null;
-  var suggBox    = null;
-  var searchWrap = null;
+  var hdr, scroll, sugg;
+  var lastY=0, ticking=false, hidden=false;
+  var HIDE=50, SHOW=12;        // scroll thresholds in px
 
-  var innerH     = 0;   // measured full height of inner content
-  var isHidden   = false;
-  var lastY      = 0;
-  var ticking    = false;
-
-  var HIDE_PX    = 45;  // scroll down this far before hiding
-  var SHOW_PX    = 12;  // scroll up this far before showing
-
-  // ── Measure real pixel height ──────────────────────────────
-  function measure(){
-    if(!inner || !header) return;
-    // Read natural height with no constraints
-    header.style.transition = 'none';
-    header.style.height     = 'auto';
-    innerH = inner.offsetHeight;
-    // Commit expanded height so the flex layout knows the size
-    header.style.height = innerH + 'px';
-    // Flush, then restore transition
-    header.offsetHeight; // force reflow
-    header.style.transition = '';
-    // Also position the suggestions dropdown correctly
-    updateSuggTop();
+  function setTop(){
+    // Keep suggestions dropdown positioned just below search bar
+    if(!hdr||!sugg) return;
+    var r=hdr.getBoundingClientRect();
+    document.documentElement.style.setProperty('--sugg-top',(r.bottom-44)+'px');
   }
 
-  // ── Keep suggestions anchored below the search bar ─────────
-  // Because .search-suggestions is position:fixed, we need to
-  // compute its top from the search bar's screen position
-  function updateSuggTop(){
-    if(!searchWrap) return;
-    var r = searchWrap.getBoundingClientRect();
-    document.documentElement.style.setProperty('--sugg-top', (r.bottom + 8) + 'px');
+  function doHide(){
+    if(hidden) return;
+    hidden=true;
+    // Measure once — set the exact pixel offset as a CSS variable
+    var h=hdr.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--hdr-h', h+'px');
+    hdr.classList.add('sh-hidden');
+    setTop();
   }
 
-  // ── Collapse header ────────────────────────────────────────
-  function hide(){
-    if(isHidden) return;
-    isHidden = true;
-    // Set the exact negative offset so the slide matches content height
-    inner.style.setProperty('--slide-up', '-' + innerH + 'px');
-    inner.classList.add('hide');
-    // Shrink the header box to zero — inner slides up inside it
-    header.style.height = '0px';
-    updateSuggTop();
+  function doShow(){
+    if(!hidden) return;
+    hidden=false;
+    hdr.classList.remove('sh-hidden');
+    setTop();
   }
 
-  // ── Expand header ──────────────────────────────────────────
-  function show(){
-    if(!isHidden) return;
-    isHidden = false;
-    inner.classList.remove('hide');
-    header.style.height = innerH + 'px';
-    updateSuggTop();
-  }
-
-  // ── Scroll handler (runs inside rAF) ──────────────────────
-  function onFrame(y){
-    var delta = y - lastY;
-    lastY = y < 0 ? 0 : y;
-    if(y <= 4){
-      show();
-    } else if(delta > 0 && y > HIDE_PX){
-      hide();
-    } else if(delta < -SHOW_PX){
-      show();
-    }
-    updateSuggTop();
+  function tick(){
+    var y=scroll.scrollTop;
+    var d=y-lastY;
+    lastY=y<0?0:y;
+    if(y<=4)           doShow();
+    else if(d>0&&y>HIDE) doHide();
+    else if(d<-SHOW)   doShow();
+    ticking=false;
   }
 
   function onScroll(){
     if(!ticking){
-      ticking = true;
-      var rAF = window.requestAnimationFrame
-             || window.webkitRequestAnimationFrame
-             || function(fn){ setTimeout(fn,16); };
-      rAF(function(){
-        if(scrollEl) onFrame(scrollEl.scrollTop);
-        ticking = false;
-      });
+      ticking=true;
+      (window.requestAnimationFrame||window.webkitRequestAnimationFrame||
+       function(fn){setTimeout(fn,16);})(tick);
     }
   }
 
-  // ── Init ──────────────────────────────────────────────────
   function init(){
-    header     = document.getElementById('shop-header');
-    inner      = document.getElementById('shop-header-inner');
-    scrollEl   = document.getElementById('shop-scroll');
-    suggBox    = document.getElementById('search-suggestions');
-    searchWrap = document.getElementById('search-wrap');
+    hdr    = document.querySelector('#sub-shop .cust-header');
+    scroll = document.getElementById('shop-scroll');
+    sugg   = document.getElementById('search-suggestions');
+    if(!hdr||!scroll) return;
 
-    if(!header || !inner || !scrollEl) return;
+    // Set initial suggestion position
+    setTop();
+    window.addEventListener('resize',setTop);
 
-    // Double rAF ensures fonts + flex layout are fully painted
-    var rAF = window.requestAnimationFrame || function(fn){ setTimeout(fn,16); };
-    rAF(function(){ rAF(function(){
-      measure();
-
-      // Passive listener — browser doesn't wait for JS before scrolling
-      var opts = false;
-      try{
-        window.addEventListener('t',null,
-          Object.defineProperty({},'passive',{get:function(){opts={passive:true};}}));
-      }catch(e){}
-      scrollEl.addEventListener('scroll', onScroll, opts);
-
-      // Re-measure on resize/orientation change
-      window.addEventListener('resize', function(){
-        rAF(function(){ if(isHidden){ show(); } rAF(measure); });
-      });
-    }); });
+    // Attach passive scroll listener
+    var opts=false;
+    try{ window.addEventListener('_t',null,
+      Object.defineProperty({},'passive',{get:function(){opts={passive:true};}}));
+    }catch(e){}
+    scroll.addEventListener('scroll',onScroll,opts);
   }
 
-  // Delay init so Firebase auth + render settles completely
+  // Wait until full render is done — prevents measuring before layout settles
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', function(){ setTimeout(init,400); });
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(init,250);});
   } else {
-    setTimeout(init, 400);
+    setTimeout(init,250);
   }
 })();
 </script>
