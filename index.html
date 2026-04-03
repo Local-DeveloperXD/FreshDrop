@@ -102,10 +102,12 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .scroll-area::-webkit-scrollbar{display:none}
 
 /* CUSTOMER HEADER */
-.cust-header{background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);padding:20px 18px 18px;flex-shrink:0}
-.search-wrap{overflow:hidden;transition:max-height .3s ease, opacity .3s ease, padding .3s ease;max-height:80px;opacity:1}
-.search-wrap.hidden{max-height:0;opacity:0;padding:0}
-.user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cust-header{background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);padding:20px 18px 18px;flex-shrink:0;transition:padding .3s ease,background .3s ease}
+.cust-header.scrolled{padding:10px 18px 10px}
+.user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;overflow:hidden;max-height:60px;transition:max-height .3s ease,margin-bottom .3s ease,opacity .3s ease;opacity:1}
+.cust-header.scrolled .user-row{max-height:0;margin-bottom:0;opacity:0}
+.search-wrap{transition:max-height .3s ease,opacity .3s ease;max-height:60px;opacity:1;overflow:hidden}
+.cust-header.scrolled .search-wrap{max-height:0;opacity:0}
 .user-info{display:flex;align-items:center;gap:10px}
 .user-avatar{width:36px;height:36px;background:var(--or1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;border:2px solid rgba(255,255,255,.3)}
 .user-name{color:#fff;font-size:15px;font-weight:800}
@@ -637,7 +639,7 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
         <div class="filter-chip" id="fcat-drinks"   onclick="filterCategory('drinks',this)">🥤 Drinks</div>
         <div class="filter-chip" id="fcat-noodles"  onclick="filterCategory('noodles',this)">🍜 Noodles</div>
       </div>
-      <div class="scroll-area" id="shop-scroll-area" onscroll="handleShopScroll(this)">
+      <div class="scroll-area" id="shop-scroll">
         <div class="sec-hdr"><h3 id="products-title">All Products</h3><span id="products-count"></span></div>
         <div class="products-grid" id="products-grid"></div>
       </div>
@@ -3134,23 +3136,29 @@ initDB().then(()=>{
 }).catch(()=>{});
 
 // Close modals on overlay click
-let _lastShopScroll = 0;
-function handleShopScroll(el){
-  const cur = el.scrollTop;
-  const wrap = document.querySelector('.search-wrap');
-  if(!wrap) return;
-  if(cur > _lastShopScroll && cur > 50){
-    // Scrolling DOWN — hide search bar
-    wrap.classList.add('hidden');
-  } else {
-    // Scrolling UP or at top — show search bar
-    wrap.classList.remove('hidden');
-  }
-  _lastShopScroll = cur <= 0 ? 0 : cur;
-}
 ['checkout-modal','add-addr-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 document.getElementById('track-modal').addEventListener('click',function(e){if(e.target===this)closeTrackModal();});
 document.getElementById('notif-panel').addEventListener('click',function(e){if(e.target===this)toggleNotifPanel();});
+
+// ── Scroll to hide / show header ──────────────────────────
+(function(){
+  var prev=0, ticking=false;
+  function run(){
+    var el=document.getElementById('shop-scroll');
+    var hdr=document.querySelector('#sub-shop .cust-header');
+    if(!el||!hdr){ticking=false;return;}
+    var y=el.scrollTop;
+    if(y>60 && y>prev)       hdr.classList.add('scrolled');   // scrolling down
+    else if(y<prev-10||y<10) hdr.classList.remove('scrolled');// scrolling up or at top
+    prev=y;ticking=false;
+  }
+  function onScroll(){if(!ticking){ticking=true;(requestAnimationFrame||setTimeout)(run,0);}}
+  function attach(){
+    var el=document.getElementById('shop-scroll');
+    if(el) el.addEventListener('scroll',onScroll,{passive:true});
+  }
+  setTimeout(attach,300);
+})();
 </script>
 </body>
 </html>
