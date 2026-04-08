@@ -53,6 +53,59 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 @keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
 
+/* STORE OFFLINE OVERLAY */
+#store-offline-overlay{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#1c0a00 0%,#7c2d12 50%,#1c0a00 100%);text-align:center;padding:32px 24px}
+#store-offline-overlay.active{display:flex}
+.offline-glow{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(249,115,22,.18) 0%,transparent 70%);pointer-events:none}
+.offline-logo{font-family:'Fraunces',sans-serif;font-size:44px;font-weight:900;color:#fff;letter-spacing:-2px;margin-bottom:6px}
+.offline-logo span{color:#fde68a}
+.offline-icon{font-size:72px;margin-bottom:18px;animation:pulse2 2s infinite}
+.offline-title{font-size:26px;font-weight:900;color:#fff;font-family:'Fraunces',sans-serif;margin-bottom:10px}
+.offline-msg{font-size:14px;color:rgba(255,255,255,.75);font-weight:600;max-width:300px;line-height:1.6;margin-bottom:28px}
+.offline-badge{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:16px;padding:16px 28px;margin-bottom:14px;backdrop-filter:blur(8px)}
+.offline-badge-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);font-weight:800;margin-bottom:6px}
+.offline-badge-time{font-size:28px;font-weight:900;color:#fbbf24;font-family:'Fraunces',sans-serif;letter-spacing:-0.5px}
+.offline-countdown{font-size:12px;color:rgba(255,255,255,.5);font-weight:700;margin-top:8px}
+.offline-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
+.offline-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);animation:pulse2 1.5s infinite}
+.offline-dot:nth-child(2){animation-delay:.3s}
+.offline-dot:nth-child(3){animation-delay:.6s}
+
+/* ADMIN STORE CONTROL */
+.store-ctrl-card{background:#fff;border-radius:18px;padding:18px 16px;margin:0 14px 14px;box-shadow:0 2px 12px rgba(249,115,22,.1);border:2px solid var(--border)}
+.store-ctrl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.store-ctrl-info{flex:1}
+.store-ctrl-title{font-size:15px;font-weight:900;color:var(--dark);margin-bottom:2px}
+.store-ctrl-sub{font-size:12px;color:var(--gray);font-weight:600}
+.store-toggle-wrap{display:flex;align-items:center;gap:10px}
+.store-status-dot{width:10px;height:10px;border-radius:50%;background:var(--gr1);box-shadow:0 0 0 3px rgba(22,163,74,.2);transition:all .3s}
+.store-status-dot.offline{background:var(--red);box-shadow:0 0 0 3px rgba(239,68,68,.2)}
+.store-big-toggle{position:relative;width:58px;height:30px;cursor:pointer}
+.store-big-toggle input{opacity:0;width:0;height:0}
+.store-big-toggle .tog-track{position:absolute;inset:0;background:#d1d5db;border-radius:15px;transition:background .3s}
+.store-big-toggle input:checked+.tog-track{background:var(--gr1)}
+.store-big-toggle .tog-knob{position:absolute;left:3px;top:3px;width:24px;height:24px;background:#fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .3s}
+.store-big-toggle input:checked+.tog-track+.tog-knob{transform:translateX(28px)}
+.offline-time-section{border-top:1.5px solid var(--border);padding-top:14px}
+.offline-time-label{font-size:11px;font-weight:800;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.time-presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.time-preset-btn{padding:7px 12px;border:2px solid var(--border);border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;background:#fff;color:var(--gray);transition:all .2s;font-family:'Nunito',sans-serif}
+.time-preset-btn.active,.time-preset-btn:hover{border-color:var(--or1);background:var(--or3);color:var(--or2)}
+.offline-custom-row{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.offline-custom-row input[type="time"]{flex:1;padding:10px 12px;border:2px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;outline:none;color:var(--dark);background:#fff}
+.offline-custom-row input[type="time"]:focus{border-color:var(--or1)}
+.offline-msg-input{width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;outline:none;resize:none;color:var(--dark);background:#fff;margin-bottom:12px}
+.offline-msg-input:focus{border-color:var(--or1)}
+.apply-offline-btn{width:100%;padding:13px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s}
+.apply-offline-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(239,68,68,.35)}
+.bring-online-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--gr1),var(--gr2));color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s;margin-top:4px}
+.bring-online-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(22,163,74,.35)}
+
+/* NAV OFFLINE PILL */
+.nav-offline-pill{display:none;align-items:center;gap:5px;background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.35);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:800;color:#fca5a5;cursor:pointer;flex-shrink:0}
+.nav-offline-pill.show{display:flex}
+.nav-offline-pill-dot{width:7px;height:7px;border-radius:50%;background:#ef4444;animation:pulse2 1.2s infinite}
+
 /* LOGIN */
 #screen-login{background:var(--bg);overflow-y:auto}
 .login-hero{background:linear-gradient(145deg,#1c0a00,#c2410c,#f97316);padding:56px 28px 44px;text-align:center;position:relative;overflow:hidden}
@@ -102,12 +155,94 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .scroll-area::-webkit-scrollbar{display:none}
 
 /* CUSTOMER HEADER */
-.cust-header{background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);padding:20px 18px 18px;flex-shrink:0;transition:padding .3s ease,background .3s ease}
+.cust-header{background:linear-gradient(135deg,#1c0a00,#9a3412,#f97316);padding:20px 18px 18px;flex-shrink:0;transition:padding .3s ease}
 .cust-header.scrolled{padding:10px 18px 10px}
-.user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;overflow:hidden;max-height:60px;transition:max-height .3s ease,margin-bottom .3s ease,opacity .3s ease;opacity:1}
+.user-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;overflow:hidden;max-height:60px;opacity:1;transition:max-height .3s ease,margin-bottom .3s ease,opacity .25s ease}
 .cust-header.scrolled .user-row{max-height:0;margin-bottom:0;opacity:0}
-.search-wrap{transition:max-height .3s ease,opacity .3s ease;max-height:60px;opacity:1;overflow:hidden}
+.search-wrap{max-height:60px;opacity:1;overflow:hidden;transition:max-height .3s ease,opacity .25s ease}
 .cust-header.scrolled .search-wrap{max-height:0;opacity:0}
+
+/* LOCATION BAR — replaces user-name with current location */
+.loc-bar{display:flex;align-items:center;gap:8px;cursor:pointer;min-width:0}
+.loc-bar-icon{font-size:16px;flex-shrink:0;animation:pulse2 2s infinite}
+.loc-bar-text{display:flex;flex-direction:column;min-width:0}
+.loc-bar-label{font-size:10px;color:rgba(255,255,255,.65);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.loc-bar-addr{font-size:14px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;display:flex;align-items:center;gap:4px}
+.loc-bar-caret{font-size:10px;color:rgba(255,255,255,.8)}
+
+/* PROMO BANNER SLIDER — scrolls with content, compact height */
+.banner-slider{overflow:hidden;position:relative;background:var(--dark);flex-shrink:0}
+.banner-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.banner-slide{flex-shrink:0;width:100%;height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer}
+.banner-slide img{width:100%;height:100%;object-fit:cover}
+.banner-dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2}
+.banner-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .3s}
+.banner-dot.active{background:#fff;width:16px;border-radius:3px}
+
+/* LOCATION POPUP — shown after login for customers */
+.loc-popup-overlay{display:none;position:fixed;inset:0;background:rgba(28,10,0,.7);z-index:600;align-items:flex-end;backdrop-filter:blur(4px)}
+.loc-popup-overlay.open{display:flex}
+.loc-popup{background:#fff;border-radius:24px 24px 0 0;width:100%;padding:28px 22px 40px;animation:slideUp .35s cubic-bezier(.34,1.2,.64,1)}
+.loc-popup-icon{font-size:52px;text-align:center;margin-bottom:12px;animation:popIn .5s both}
+.loc-popup h3{font-size:22px;font-weight:900;text-align:center;margin-bottom:8px}
+.loc-popup p{font-size:13px;color:var(--gray);font-weight:600;text-align:center;line-height:1.6;margin-bottom:24px}
+.loc-popup-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--or1),var(--or2));color:#fff;border:none;border-radius:var(--r-sm);font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:10px;box-shadow:0 4px 14px rgba(249,115,22,.35)}
+.loc-popup-skip{width:100%;padding:13px;background:none;border:2px solid var(--border);border-radius:var(--r-sm);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;color:var(--gray)}
+
+/* LOCATION SELECTION SCREEN */
+.loc-screen{position:fixed;inset:0;background:#fff;z-index:500;display:none;flex-direction:column}
+.loc-screen.open{display:flex}
+.loc-screen-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #fde8d0;flex-shrink:0}
+.loc-back-btn{background:none;border:none;font-size:22px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--or3)}
+.loc-search-inp{flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:var(--r-sm);font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;outline:none}
+.loc-search-inp:focus{border-color:var(--or1)}
+.loc-action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 18px;border-bottom:1px solid #fde8d0;flex-shrink:0}
+.loc-action-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer;transition:all .2s}
+.loc-action-card:hover,.loc-action-card:active{border-color:var(--or1);background:var(--or3)}
+.loc-action-icon{font-size:22px;margin-bottom:5px}
+.loc-action-lbl{font-size:11px;font-weight:800;color:var(--gray)}
+.loc-section-title{font-size:11px;font-weight:800;color:var(--gray2);text-transform:uppercase;letter-spacing:.06em;padding:14px 18px 8px}
+.loc-addr-item{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #fef3c7;cursor:pointer;transition:background .15s}
+.loc-addr-item:hover{background:var(--or3)}
+.loc-addr-ic{width:38px;height:38px;border-radius:50%;background:var(--or3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.loc-addr-name{font-size:14px;font-weight:800;color:var(--dark)}
+.loc-addr-sub{font-size:11px;color:var(--gray);font-weight:600;margin-top:1px}
+
+/* ADDRESS DETAIL FORM SCREEN */
+.addr-detail-screen{position:fixed;inset:0;background:#f8f8f8;z-index:510;display:none;flex-direction:column}
+.addr-detail-screen.open{display:flex}
+.addr-detail-head{background:#fff;padding:16px 18px;border-bottom:1px solid #fde8d0;flex-shrink:0;display:flex;align-items:center;gap:12px}
+.addr-detail-title{font-size:15px;font-weight:800;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.addr-type-row{display:flex;gap:8px;margin-bottom:16px}
+.addr-type-btn{flex:1;padding:10px 6px;border:2px solid var(--border);border-radius:12px;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .2s;color:var(--gray)}
+.addr-type-btn.active{border-color:var(--or1);background:var(--or3);color:var(--or2)}
+.addr-section{background:#fff;border-radius:var(--r);padding:16px;margin:0 14px 12px;box-shadow:0 2px 8px rgba(249,115,22,.06)}
+.addr-section h4{font-size:13px;font-weight:900;margin-bottom:14px;color:var(--dark)}
+.addr-map-thumb{height:80px;border-radius:10px;overflow:hidden;border:1.5px solid var(--border);margin-bottom:14px;display:flex;align-items:center;justify-content:center;background:var(--or3);cursor:pointer;gap:8px;font-size:13px;font-weight:700;color:var(--or2)}
+.addr-save-btn{width:calc(100% - 28px);margin:0 14px 24px;padding:15px;background:linear-gradient(135deg,var(--or1),var(--or2));color:#fff;border:none;border-radius:var(--r-sm);font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(249,115,22,.35)}
+
+/* RIDER PICKER SHEET */
+.rp-overlay{display:none;position:fixed;inset:0;background:rgba(28,10,0,.65);z-index:400;align-items:flex-end;backdrop-filter:blur(3px)}
+.rp-overlay.open{display:flex}
+.rp-sheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-height:78vh;overflow-y:auto;padding:20px 20px 36px;animation:slideUp .32s cubic-bezier(.34,1.2,.64,1)}
+.rp-sheet::-webkit-scrollbar{display:none}
+.rp-order-pill{background:var(--or3);border-radius:12px;padding:10px 14px;margin-bottom:16px;border-left:3px solid var(--or1)}
+.rp-oid{font-size:13px;font-weight:900;color:var(--or2)}
+.rp-addr-txt{font-size:11px;color:var(--gray);font-weight:600;margin-top:2px}
+.rider-pick-row{display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid #fef3c7;cursor:pointer;border-radius:12px;transition:background .15s}
+.rider-pick-row:last-child{border-bottom:none}
+.rider-pick-row:hover,.rider-pick-row:active{background:var(--or3)}
+.rider-pick-row.selected{background:var(--or3);outline:2px solid var(--or1)}
+.rpr-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--or1),var(--or2));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;position:relative}
+.rpr-dot{position:absolute;bottom:1px;right:1px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+.rpr-dot.on{background:#22c55e}
+.rpr-dot.off{background:#9ca3af}
+.rpr-name{font-size:14px;font-weight:800;color:var(--dark)}
+.rpr-meta{font-size:11px;color:var(--gray);font-weight:600;margin-top:2px}
+.rpr-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);margin-left:auto;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s}
+.rider-pick-row.selected .rpr-check{background:var(--or1);border-color:var(--or1);color:#fff}
+.rp-confirm-btn{width:100%;background:linear-gradient(135deg,var(--or1),var(--or2));color:#fff;border:none;border-radius:var(--r-sm);padding:15px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:16px;box-shadow:0 4px 14px rgba(249,115,22,.35)}
+.rp-confirm-btn:disabled{opacity:.4;cursor:not-allowed}
 .user-info{display:flex;align-items:center;gap:10px}
 .user-avatar{width:36px;height:36px;background:var(--or1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;border:2px solid rgba(255,255,255,.3)}
 .user-name{color:#fff;font-size:15px;font-weight:800}
@@ -193,8 +328,13 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 .checkout-btn{background:#fff;color:var(--or1);border:none;border-radius:12px;padding:9px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer}
 
 /* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid #fde8d0;display:none;justify-content:space-around;align-items:center;padding:8px 0 12px;z-index:88;box-shadow:0 -2px 16px rgba(249,115,22,.1)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid #fde8d0;display:none;justify-content:space-around;align-items:center;padding:8px 0 12px;z-index:88;box-shadow:0 -2px 16px rgba(249,115,22,.1);
+  /* Slide transition — GPU only, no layout reflow */
+  -webkit-transform:translateY(0);transform:translateY(0);
+  -webkit-transition:-webkit-transform .3s cubic-bezier(.4,0,.2,1);transition:transform .3s cubic-bezier(.4,0,.2,1);
+  will-change:transform}
 .bottom-nav.visible{display:flex}
+.bottom-nav.nav-hidden{-webkit-transform:translateY(100%);transform:translateY(100%)}
 .bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;cursor:pointer;padding:4px 0;border:none;background:none;transition:all .2s}
 .bnav-icon{font-size:20px;transition:transform .2s}
 .bnav-label{font-size:10px;font-weight:800;color:var(--gray2)}
@@ -290,14 +430,42 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
 /* ZONE */
 .zone-card{background:#fff;border-radius:var(--r);padding:14px;margin:0 14px 10px;box-shadow:0 2px 10px rgba(249,115,22,.07);display:flex;align-items:center;gap:12px}
 .zone-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.zone-info{flex:1}
+.zone-info{flex:1;min-width:0}
 .zone-name{font-size:13px;font-weight:800}
 .zone-areas{font-size:11px;color:var(--gray);font-weight:600}
 .zone-fee{font-family:'Fraunces',sans-serif;font-size:15px;font-weight:900;color:var(--or1)}
+.zone-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .zone-toggle{width:42px;height:24px;background:#e5e7eb;border-radius:12px;position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0}
 .zone-toggle.on{background:var(--gr1)}
 .zone-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
 .zone-toggle.on::after{transform:translateX(18px)}
+.zone-edit-btn{background:var(--or3);border:none;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.zone-edit-btn:hover{background:var(--or4)}
+.zone-del-btn{background:#fee2e2;border:none;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.zone-del-btn:hover{background:#fca5a5}
+.zone-color-dot{width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;border:3px solid transparent;transition:all .2s;flex-shrink:0}
+.zone-color-dot.selected{border-color:#fff;box-shadow:0 0 0 2px var(--dark);transform:scale(1.15)}
+
+/* CUSTOMER MANAGEMENT */
+.cust-mgmt-card{background:#fff;border-radius:var(--r);padding:13px 14px;margin:0 14px 10px;box-shadow:0 2px 10px rgba(249,115,22,.07);display:flex;align-items:center;gap:12px;animation:slideInLeft .3s both}
+.cust-mgmt-card.banned{background:#fff1f2;border:1.5px solid #fca5a5}
+.cust-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--or1),var(--or2));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0}
+.cust-av.banned{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.cust-info{flex:1;min-width:0}
+.cust-name-lbl{font-size:14px;font-weight:800;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cust-email-lbl{font-size:11px;color:var(--gray);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cust-stats-lbl{font-size:11px;color:var(--or2);font-weight:700;margin-top:3px}
+.cust-ban-btn{padding:7px 12px;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;transition:all .2s}
+.cust-ban-btn.do-ban{background:#fee2e2;color:#991b1b}
+.cust-ban-btn.do-ban:hover{background:#ef4444;color:#fff}
+.cust-ban-btn.do-unban{background:#dcfce7;color:#166534}
+.cust-ban-btn.do-unban:hover{background:#16a34a;color:#fff}
+.cust-search-bar{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--border);border-radius:var(--r-sm);padding:10px 14px;margin:10px 14px 8px;flex-shrink:0}
+.cust-search-bar input{flex:1;border:none;outline:none;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--dark);background:none}
+.cust-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 14px 8px;flex-shrink:0}
+.cust-stat-mini{background:#fff;border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 8px rgba(249,115,22,.07)}
+.csm-val{font-family:'Fraunces',sans-serif;font-size:18px;font-weight:900;color:var(--dark)}
+.csm-lbl{font-size:9px;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
 
 /* TRACK MODAL */
 .track-modal-overlay{display:none;position:fixed;inset:0;background:rgba(28,10,0,.6);z-index:300;align-items:flex-end;backdrop-filter:blur(4px)}
@@ -603,6 +771,9 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
     <button class="nav-tab active" onclick="switchView('customer',this)" id="tab-customer">🛒 Shop</button>
     <button class="nav-tab" onclick="switchView('admin',this)" id="tab-admin" style="display:none">⚙️ Admin</button>
     <button class="nav-tab" onclick="switchView('rider',this)" id="tab-rider" style="display:none">🚴 Rider</button>
+    <div class="nav-offline-pill" id="nav-offline-pill" onclick="adminGoToStoreCtrl()">
+      <div class="nav-offline-pill-dot"></div>Store Offline
+    </div>
   </nav>
 
   <!-- CUSTOMER -->
@@ -612,9 +783,12 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
     <div class="cust-subview active" id="sub-shop">
       <div class="cust-header">
         <div class="user-row">
-          <div class="user-info">
-            <div class="user-avatar" id="cust-avatar">U</div>
-            <div><div class="user-name" id="cust-name-badge">User</div><div class="user-sub">What do you need today?</div></div>
+          <div class="loc-bar" onclick="openLocScreen()" id="loc-bar">
+            <div class="loc-bar-icon">📍</div>
+            <div class="loc-bar-text">
+              <div class="loc-bar-label">Delivering to</div>
+              <div class="loc-bar-addr" id="loc-bar-addr">Set your location <span class="loc-bar-caret">▼</span></div>
+            </div>
           </div>
           <button class="header-notif" onclick="toggleNotifPanel()">🔔<div class="header-notif-dot" id="hdr-notif-dot"></div></button>
         </div>
@@ -627,11 +801,6 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
           <div class="search-suggestions" id="search-suggestions"></div>
         </div>
       </div>
-      <!-- Filter bar -->
-      <!-- Free delivery promo banner -->
-      <div style="background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;padding:8px 16px;font-size:12px;font-weight:800;text-align:center;flex-shrink:0">
-        🎉 FREE delivery on orders above ₹1000!
-      </div>
       <div class="filter-bar" id="filter-bar">
         <div class="filter-chip active" id="fcat-all"      onclick="filterCategory('all',this)">🛒 All</div>
         <div class="filter-chip" id="fcat-chips"    onclick="filterCategory('chips',this)">🍟 Chips</div>
@@ -640,6 +809,15 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
         <div class="filter-chip" id="fcat-noodles"  onclick="filterCategory('noodles',this)">🍜 Noodles</div>
       </div>
       <div class="scroll-area" id="shop-scroll">
+        <!-- PROMO BANNER — scrolls with products -->
+        <div class="banner-slider" id="banner-slider">
+          <div class="banner-track" id="banner-track"></div>
+          <div class="banner-dots" id="banner-dots"></div>
+        </div>
+        <!-- Free delivery strip — also scrolls -->
+        <div style="background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;padding:7px 16px;font-size:12px;font-weight:800;text-align:center" id="free-del-banner">
+          🎉 FREE delivery on orders above ₹1000!
+        </div>
         <div class="sec-hdr"><h3 id="products-title">All Products</h3><span id="products-count"></span></div>
         <div class="products-grid" id="products-grid"></div>
       </div>
@@ -692,15 +870,41 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
     <div class="admin-header">
       <div class="sub">FreshDrop Dashboard</div>
       <h2>Management</h2>
-      <div style="font-size:13px;color:#f97316;margin-top:2px;font-weight:700" id="admin-user-label">Admin</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:13px;color:#f97316;margin-top:2px;font-weight:700" id="admin-user-label">Admin</div>
+        <div id="admin-hdr-store-badge" onclick="adminGoToStoreCtrl()" style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;cursor:pointer;padding:4px 10px;border-radius:20px;background:rgba(22,163,74,.18);color:#86efac;border:1px solid rgba(22,163,74,.3);transition:all .2s">
+          <div style="width:6px;height:6px;border-radius:50%;background:#4ade80" id="admin-hdr-dot"></div>
+          <span id="admin-hdr-store-label">Online</span>
+        </div>
+      </div>
     </div>
     <div class="admin-stab-row">
       <button class="admin-stab active" id="ast-orders"    onclick="switchAdminTab('orders',this)">📦 Orders</button>
+      <button class="admin-stab"        id="ast-home"      onclick="switchAdminTab('home',this)">🏠 Home</button>
       <button class="admin-stab"        id="ast-analytics" onclick="switchAdminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-stab"        id="ast-riders"    onclick="switchAdminTab('riders',this)">🚴 Riders</button>
+      <button class="admin-stab"        id="ast-customers" onclick="switchAdminTab('customers',this)">👥 Customers</button>
       <button class="admin-stab"        id="ast-zones"     onclick="switchAdminTab('zones',this)">🗺️ Zones</button>
       <button class="admin-stab"        id="ast-products"  onclick="switchAdminTab('products',this)">🛒 Products</button>
+      <button class="admin-stab"        id="ast-settings"  onclick="switchAdminTab('settings',this)">⚙️ Settings</button>
     </div>
+
+    <!-- ADMIN HOME TAB — banner management -->
+    <div id="admin-tab-home" style="display:none;flex:1;overflow:hidden">
+      <div class="scroll-area" style="padding-top:14px">
+        <div style="padding:0 14px 10px;display:flex;justify-content:space-between;align-items:center">
+          <h3 style="font-size:16px;font-weight:900">🏠 Home Screen</h3>
+          <button onclick="addBanner()" style="background:var(--or1);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer">＋ Add Banner</button>
+        </div>
+        <div style="padding:12px 14px;background:var(--or3);margin:0 14px 14px;border-radius:14px;border-left:3px solid var(--or1)">
+          <div style="font-size:12px;font-weight:800;color:var(--or2)">📌 Banner Tips</div>
+          <div style="font-size:11px;color:var(--gray);font-weight:600;margin-top:3px;line-height:1.5">Add image URLs or emoji banners. They auto-rotate every few seconds. Tap ✏️ to edit, 🗑️ to delete.</div>
+        </div>
+        <div id="admin-banners-list"></div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
     <div id="admin-tab-orders" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
       <div class="scroll-area">
         <div class="stats-grid">
@@ -756,9 +960,26 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
       <div class="scroll-area" style="padding-top:14px">
         <div style="padding:0 14px 10px;display:flex;justify-content:space-between;align-items:center">
           <h3 style="font-size:16px;font-weight:900">Delivery Zones</h3>
-          <button onclick="addZone()" style="background:var(--or1);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer">＋ Add Zone</button>
+          <button onclick="openZoneModal(null)" style="background:var(--or1);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer">＋ Add Zone</button>
         </div>
         <div id="admin-zones-list"></div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS TAB -->
+    <div id="admin-tab-customers" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+      <div class="cust-stat-row" id="cust-mgmt-stats">
+        <div class="cust-stat-mini"><div class="csm-val" id="csm-total">0</div><div class="csm-lbl">Total</div></div>
+        <div class="cust-stat-mini"><div class="csm-val" id="csm-active" style="color:var(--gr1)">0</div><div class="csm-lbl">Active</div></div>
+        <div class="cust-stat-mini"><div class="csm-val" id="csm-banned" style="color:var(--red)">0</div><div class="csm-lbl">Banned</div></div>
+      </div>
+      <div class="cust-search-bar">
+        <span style="font-size:14px">🔍</span>
+        <input type="text" id="cust-mgmt-search" placeholder="Search by name or email…" oninput="filterCustomerList(this.value)">
+      </div>
+      <div class="scroll-area" style="padding-top:4px">
+        <div id="customers-mgmt-list"></div>
         <button class="logout-btn" onclick="logout()">🚪 Logout</button>
       </div>
     </div>
@@ -779,6 +1000,62 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
           <button class="prod-filter-btn"        id="pf-noodles" onclick="filterAdminProducts('noodles',this)">🍜 Noodles</button>
         </div>
         <div id="admin-products-list"></div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div id="admin-tab-settings" style="display:none;flex:1;overflow:hidden">
+      <div class="scroll-area" style="padding-top:14px">
+        <div style="padding:0 14px 10px">
+          <h3 style="font-size:16px;font-weight:900">⚙️ Store Settings</h3>
+        </div>
+
+        <!-- STORE ONLINE/OFFLINE CONTROL -->
+        <div class="store-ctrl-card">
+          <div class="store-ctrl-row">
+            <div class="store-ctrl-info">
+              <div class="store-ctrl-title" id="store-ctrl-title">🟢 Store is Online</div>
+              <div class="store-ctrl-sub" id="store-ctrl-sub">Customers can browse and place orders</div>
+            </div>
+            <div class="store-toggle-wrap">
+              <div class="store-status-dot" id="store-status-dot"></div>
+              <label class="store-big-toggle">
+                <input type="checkbox" id="store-toggle-chk" checked onchange="handleStoreToggleChange(this.checked)">
+                <div class="tog-track"></div>
+                <div class="tog-knob"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- OFFLINE CONFIG — shown when toggling offline -->
+          <div class="offline-time-section" id="offline-config-section" style="display:none">
+            <div class="offline-time-label">⏰ When will the store be back?</div>
+            <div class="time-presets" id="time-preset-btns">
+              <button class="time-preset-btn" onclick="applyPreset(30,this)">30 min</button>
+              <button class="time-preset-btn" onclick="applyPreset(60,this)">1 hour</button>
+              <button class="time-preset-btn" onclick="applyPreset(120,this)">2 hours</button>
+              <button class="time-preset-btn" onclick="applyPreset(180,this)">3 hours</button>
+              <button class="time-preset-btn" onclick="applyPreset(0,this)">Custom</button>
+            </div>
+            <div class="offline-custom-row" id="custom-time-row" style="display:none">
+              <input type="time" id="offline-return-input" placeholder="Select time">
+            </div>
+            <div class="offline-time-label" style="margin-top:4px">💬 Message for customers</div>
+            <textarea class="offline-msg-input" id="offline-custom-msg" rows="2" placeholder="e.g. Back after lunch break, restocking items…">Sorry for the inconvenience! We'll be back shortly.</textarea>
+            <button class="apply-offline-btn" onclick="applyStoreOffline()">🔴 Take Store Offline</button>
+          </div>
+
+          <!-- BRING BACK ONLINE — shown when currently offline -->
+          <div class="offline-time-section" id="online-config-section" style="display:none">
+            <div style="background:rgba(239,68,68,.08);border-radius:12px;padding:12px;margin-bottom:12px;border:1.5px solid rgba(239,68,68,.2)">
+              <div style="font-size:12px;font-weight:800;color:var(--red);margin-bottom:3px">🔴 Store is currently offline</div>
+              <div style="font-size:12px;color:var(--gray);font-weight:600">Return time: <span id="ctrl-return-time-label" style="font-weight:800;color:var(--dark)">—</span></div>
+            </div>
+            <button class="bring-online-btn" onclick="applyStoreOnline()">🟢 Bring Store Back Online</button>
+          </div>
+        </div>
+
         <button class="logout-btn" onclick="logout()">🚪 Logout</button>
       </div>
     </div>
@@ -1117,12 +1394,160 @@ h1,h2,h3,h4{font-family:'Fraunces',sans-serif}
   </div>
 </div>
 
+<!-- LOCATION PERMISSION POPUP -->
+<div class="loc-popup-overlay" id="loc-popup-overlay">
+  <div class="loc-popup">
+    <div class="loc-popup-icon">📍</div>
+    <h3>Know your exact delivery time!</h3>
+    <p>Allow FreshDrop to access your location for accurate delivery estimates and to check if we deliver to your area.</p>
+    <button class="loc-popup-btn" onclick="grantLocationFromPopup()">📍 Allow Location Access</button>
+    <button class="loc-popup-skip" onclick="skipLocation()">Set location manually →</button>
+  </div>
+</div>
+
+<!-- LOCATION SELECTION SCREEN -->
+<div class="loc-screen" id="loc-screen">
+  <div class="loc-screen-head">
+    <button class="loc-back-btn" onclick="closeLocScreen()">←</button>
+    <input class="loc-search-inp" id="loc-search-inp" placeholder="Search area or address…" oninput="searchLocations(this.value)">
+  </div>
+  <div class="loc-action-row">
+    <div class="loc-action-card" onclick="useCurrentLocation()">
+      <div class="loc-action-icon">🎯</div>
+      <div class="loc-action-lbl">Current Location</div>
+    </div>
+    <div class="loc-action-card" onclick="openAddrDetailScreen(null)">
+      <div class="loc-action-icon">➕</div>
+      <div class="loc-action-lbl">Add Address</div>
+    </div>
+  </div>
+  <div id="loc-saved-section">
+    <div class="loc-section-title">Saved Addresses</div>
+    <div id="loc-saved-list"></div>
+  </div>
+  <div id="loc-recent-section">
+    <div class="loc-section-title">Recently Used</div>
+    <div id="loc-recent-list"></div>
+  </div>
+  <div id="loc-search-results" style="display:none">
+    <div class="loc-section-title">Search Results</div>
+    <div id="loc-results-list"></div>
+  </div>
+</div>
+
+<!-- ADDRESS DETAIL FORM SCREEN -->
+<div class="addr-detail-screen" id="addr-detail-screen">
+  <div class="addr-detail-head">
+    <button class="loc-back-btn" onclick="closeAddrDetailScreen()">←</button>
+    <span class="addr-detail-title" id="addr-detail-location-lbl">Set delivery details</span>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding-top:12px">
+    <div class="addr-section">
+      <h4>Receiver Details</h4>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #fef3c7;margin-bottom:12px;cursor:pointer" onclick="useMyDetails()">
+        <input type="checkbox" id="use-my-details-cb" style="width:18px;height:18px;accent-color:var(--or1)">
+        <label for="use-my-details-cb" style="font-size:13px;font-weight:700;cursor:pointer">Use my account details</label>
+      </div>
+      <div class="inp-group"><input type="text" id="addr-receiver-name" placeholder="Receiver name *" style="background:#f8f8f8"></div>
+      <div class="inp-group"><input type="tel" id="addr-receiver-phone" placeholder="Receiver's number *" style="background:#f8f8f8"></div>
+    </div>
+    <div class="addr-section">
+      <h4>Location Details</h4>
+      <div class="addr-map-thumb" onclick="useCurrentLocation()">
+        <span>📍</span><span id="addr-map-lbl">Tap to use current location</span>
+      </div>
+      <div class="addr-type-row">
+        <button class="addr-type-btn active" id="atype-house" onclick="setAddrType('house',this)">🏠 House</button>
+        <button class="addr-type-btn" id="atype-office" onclick="setAddrType('office',this)">💼 Office</button>
+        <button class="addr-type-btn" id="atype-other" onclick="setAddrType('other',this)">📍 Other</button>
+      </div>
+      <div class="inp-group"><input type="text" id="addr-building" placeholder="Building / Floor *" style="background:#f8f8f8"></div>
+      <div class="inp-group"><input type="text" id="addr-street" placeholder="Street (Recommended)" style="background:#f8f8f8"></div>
+      <div class="inp-group"><input type="text" id="addr-area" placeholder="Area / Locality" id="addr-area-inp" readonly style="background:#f0f0f0"></div>
+      <div class="inp-group"><input type="text" id="addr-save-as" placeholder="Save address as * (e.g. Home, Work)" style="background:#f8f8f8"></div>
+    </div>
+    <div class="addr-section">
+      <h4>Delivery Instructions</h4>
+      <div class="inp-group"><textarea id="addr-instructions" placeholder="Any special instructions for the rider…" rows="3" style="background:#f8f8f8;resize:none;width:100%;padding:12px;border:2px solid var(--border);border-radius:var(--r-sm);font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;outline:none"></textarea></div>
+    </div>
+    <button class="addr-save-btn" onclick="saveAddressDetail()">Save Address & Continue →</button>
+  </div>
+</div>
+
+<!-- RIDER PICKER SHEET -->
+<div class="rp-overlay" id="rp-overlay">
+  <div class="rp-sheet">
+    <div class="modal-handle"></div>
+    <h3 style="font-size:18px;margin-bottom:8px">Assign Rider 🚴</h3>
+    <div class="rp-order-pill" id="rp-order-pill">
+      <div class="rp-oid" id="rp-oid">—</div>
+      <div class="rp-addr-txt" id="rp-addr-txt">—</div>
+    </div>
+    <div id="rp-rider-list"></div>
+    <button class="rp-confirm-btn" id="rp-confirm-btn" onclick="confirmRiderPick()" disabled>Select a rider above</button>
+    <button onclick="closeRiderPicker()" style="width:100%;background:none;border:2px solid var(--border);border-radius:var(--r-sm);padding:13px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;color:var(--gray);margin-top:10px;transition:all .2s" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--gray)'">✕ Cancel</button>
+  </div>
+</div>
+
+<!-- ZONE EDIT MODAL -->
+<div class="modal-overlay" id="zone-modal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3 id="zone-modal-title">➕ Add Zone</h3>
+    <input type="hidden" id="zone-edit-id">
+    <div class="inp-group"><label>Zone Name</label><input type="text" id="zone-input-name" placeholder="e.g. Zone A – City Centre"></div>
+    <div class="inp-group"><label>Areas Covered</label><input type="text" id="zone-input-areas" placeholder="e.g. Main Bazaar, MG Road"></div>
+    <div class="inp-group"><label>Delivery Fee (₹)</label><input type="number" id="zone-input-fee" placeholder="30" min="0"></div>
+    <div class="inp-group"><label>Colour</label>
+      <div style="display:flex;gap:10px;padding:6px 0" id="zone-color-picker">
+        <div class="zone-color-dot" data-color="#f97316" style="background:#f97316" onclick="pickZoneColor('#f97316',this)">🟠</div>
+        <div class="zone-color-dot" data-color="#8b5cf6" style="background:#8b5cf6" onclick="pickZoneColor('#8b5cf6',this)">🟣</div>
+        <div class="zone-color-dot" data-color="#3b82f6" style="background:#3b82f6" onclick="pickZoneColor('#3b82f6',this)">🔵</div>
+        <div class="zone-color-dot" data-color="#16a34a" style="background:#16a34a" onclick="pickZoneColor('#16a34a',this)">🟢</div>
+        <div class="zone-color-dot" data-color="#ef4444" style="background:#ef4444" onclick="pickZoneColor('#ef4444',this)">🔴</div>
+      </div>
+      <input type="hidden" id="zone-input-color" value="#f97316">
+    </div>
+    <button class="place-btn" onclick="saveZone()"><span id="zone-save-btn-txt">✅ Save Zone</span></button>
+    <button class="cancel-btn" onclick="document.getElementById('zone-modal').classList.remove('open')">Cancel</button>
+  </div>
+</div>
+
+<!-- STORE OFFLINE OVERLAY — fullscreen, unskippable for customers -->
+<div id="store-offline-overlay">
+  <div class="offline-glow"></div>
+  <div class="offline-logo">Fresh<span>Drop</span></div>
+  <div class="offline-icon">🛑</div>
+  <div class="offline-title">We're Temporarily Closed</div>
+  <div class="offline-msg" id="offline-overlay-msg">Sorry for the inconvenience! We'll be back shortly.</div>
+  <div class="offline-badge">
+    <div class="offline-badge-label">Back Online At</div>
+    <div class="offline-badge-time" id="offline-return-time">—</div>
+  </div>
+  <div class="offline-countdown" id="offline-countdown-text"></div>
+  <div class="offline-dots">
+    <div class="offline-dot"></div>
+    <div class="offline-dot"></div>
+    <div class="offline-dot"></div>
+  </div>
+</div>
+
+<!-- BAN SCREEN — shown instead of app when customer is banned -->
+<div id="ban-screen" style="display:none;position:fixed;inset:0;background:linear-gradient(145deg,#1c0a00,#7f1d1d);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px">
+  <div style="font-size:72px;animation:popIn .6s both">🚫</div>
+  <h2 style="font-family:'Fraunces',sans-serif;color:#fff;font-size:26px;font-weight:900;text-align:center">Account Terminated</h2>
+  <p style="color:rgba(255,255,255,.75);font-size:14px;font-weight:600;text-align:center;line-height:1.6;max-width:280px">Your account has been suspended by the admin.<br>Contact support if you think this is a mistake.</p>
+  <button onclick="auth.signOut().then(()=>{document.getElementById('ban-screen').style.display='none';document.getElementById('screen-login').classList.add('active');})" style="background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;padding:12px 28px;border-radius:14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:8px">← Back to Login</button>
+</div>
+
 <script>
 // ============================================================
 // DATA
 // ============================================================
 const DELIVERY_FEE = 30;
 let currentUser = null, cart = {}, orders = [], notifs = [], orderId = 1000;
+let storeOffline = false, storeOfflineData = {}, storeListener = null, offlineCountdownInterval = null;
+let pendingOfflineOnline = false; // tracks toggle direction in settings UI
 
 // Load and sync orderId from Firestore to prevent duplicates across sessions
 async function syncOrderId(){
@@ -1143,6 +1568,15 @@ let deliveryZones = [
   {id:'z1',name:'Zone A – Tauru',areas:'Main Tauru, Tauru Town, Surrounding areas',fee:30,color:'#f97316',active:true},
 ];
 let riders = [];
+let bannedCustomers = new Set();
+let allCustomers    = [];
+let currentAddrType = 'house';
+let banners = [
+  {id:'b1', emoji:'🎉', title:'Welcome to FreshDrop!', subtitle:'Fresh groceries delivered fast', bg:'linear-gradient(135deg,#1c0a00,#f97316)', textColor:'#fff'},
+  {id:'b2', emoji:'🚀', title:'Free Delivery', subtitle:'On orders above ₹1000', bg:'linear-gradient(135deg,#16a34a,#15803d)', textColor:'#fff'},
+];
+let bannerInterval = null;
+let bannerCurrent  = 0;
 let riderEarnings=0, riderDeliveries=0, earningsHistory=[], selectedAddrType='Home', selectedPayMethod='card', adminCurFilter='all', unreadNotifs=0;
 let currentCatFilter='all', currentSortMode=0, priceMin=null, priceMax=null, searchQuery='';
 const sortModes=['Sort','Price ↑','Price ↓','Popular','Newest'];
@@ -1216,7 +1650,19 @@ try {
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
   fdb  = firebase.firestore();
-  fdb.enablePersistence().catch(()=>{});
+  // iOS Safari fix: enablePersistence fails on iOS — catch specific errors
+  // so Firestore still works in online-only mode rather than breaking silently
+  fdb.enablePersistence({ synchronizeTabs: true }).catch(err => {
+    if (err.code === 'failed-precondition') {
+      console.warn('Firestore persistence: multiple tabs open, running without persistence');
+    } else if (err.code === 'unimplemented') {
+      // iOS Safari / old browsers — perfectly fine, online writes still work
+      console.warn('Firestore persistence not supported on this browser (iOS Safari). Online mode only.');
+    } else {
+      console.warn('Firestore persistence error:', err.code);
+    }
+    // App continues normally — orders still save to Firestore in real-time
+  });
 } catch(e) {
   console.error('Firebase init error:', e);
 }
@@ -1263,8 +1709,26 @@ async function dbPutOrder(order){
     createdAt: order.createdAt || Date.now(),
     customerEmail: order.customerEmail || currentUser?.email || ''
   };
-  // Save to Firestore — this triggers real-time listeners on all devices
-  await fdb.collection('orders').doc(o.id).set(o);
+  // iOS Safari fix: use explicit retry logic — iOS can silently drop the first write
+  // if the Firestore connection hasn't fully established yet
+  let attempt = 0;
+  const maxAttempts = 3;
+  while (attempt < maxAttempts) {
+    try {
+      await fdb.collection('orders').doc(o.id).set(o);
+      break; // success — exit retry loop
+    } catch(e) {
+      attempt++;
+      console.warn(`dbPutOrder attempt ${attempt} failed:`, e.code, e.message);
+      if (attempt >= maxAttempts) {
+        // All retries failed — save locally and show warning
+        console.error('dbPutOrder: all retries failed, order saved locally only');
+        throw e;
+      }
+      // Wait 1s before retry (gives iOS time to establish connection)
+      await new Promise(r => setTimeout(r, 1000));
+    }
+  }
   // Also save locally as backup
   return dbPut('orders', o);
 }
@@ -1422,6 +1886,8 @@ async function loadAllData(){
   const rds=await dbGetAll('riders_data'); if(rds.length) riders=rds;
   // Load products from Firestore (admin edits sync to all devices)
   await loadProductsFromFirestore().catch(()=>{});
+  // Load banners
+  await loadBannersFromFirestore().catch(()=>{});
   // Start real-time listener after initial load
   startOrdersListener();
 }
@@ -1652,7 +2118,21 @@ function handleStaffLogin(){
 // ============================================================
 // LOGIN / LOGOUT
 // ============================================================
-function loginUser(user){
+async function loginUser(user){
+  // Check ban status from Firestore before letting customer in
+  if(user.role==='customer' && fdb){
+    try{
+      const doc = await fdb.collection('users').doc(user.uid).get();
+      if(doc.exists && doc.data().banned===true){
+        auth.signOut().catch(()=>{});
+        // Show ban screen
+        document.getElementById('screen-login').classList.remove('active');
+        const bs=document.getElementById('ban-screen');
+        bs.style.display='flex';
+        return;
+      }
+    }catch(e){ console.log('ban check err',e); }
+  }
   currentUser=user;
   document.getElementById('screen-login').classList.remove('active');
   document.getElementById('screen-app').classList.add('active');
@@ -1696,10 +2176,16 @@ function setupUI(){
   document.getElementById('bottom-nav').classList.toggle('visible',role==='customer');
   if(role==='customer'){
     switchView('customer',document.getElementById('tab-customer'));
-    document.getElementById('cust-avatar').textContent=(currentUser.name||'U')[0].toUpperCase();
-    document.getElementById('cust-name-badge').textContent=currentUser.name;
+    // Update location bar instead of old user-name badge
+    updateLocBar();
     const hint=document.getElementById('saved-addr-hint');if(hint)hint.textContent=savedAddresses.length?'(Use saved →)':'';
-    populateZoneDropdown();renderProducts(applyFilters());
+    populateZoneDropdown();
+    renderBannerSlider();
+    renderProducts(applyFilters());
+    // Show location popup if no address set yet
+    if(!currentUser.currentAddress && !localStorage.getItem('fd_loc_shown_'+currentUser.uid)){
+      setTimeout(()=>document.getElementById('loc-popup-overlay').classList.add('open'), 800);
+    }
   } else if(role==='admin'){
     switchView('admin',document.getElementById('tab-admin'));
     document.getElementById('admin-user-label').textContent='👋 '+currentUser.name;
@@ -2487,31 +2973,73 @@ function renderAdminOrders(filter){
       </div>
     </div>`).join('');
 }
-async function assignRider(oid){
-  const o=orders.find(x=>x.id===oid);if(!o)return;
-  const onlineRiders=riders.filter(r=>r.online);
-  if(!onlineRiders.length){showToast('⚠️ No riders online. Rider must be online to receive orders.');return;}
-  o.status='assigned'; o.rider=onlineRiders[0].name;
-  try{
-    await dbPutOrder({...o, createdAt:o.createdAt||Date.now()});
-    renderAdminOrders(); updateAdminStats(); renderRiderList();
-    pushNotif('🚴 Rider Assigned',`${o.rider} assigned to ${oid}`,'rider');
-    showToast(`🚴 ${o.rider} assigned to ${oid}!`);
-  }catch(e){
-    showToast('❌ Failed to assign rider. Check connection.');
-    console.log('assignRider err:',e);
+// ── Rider Picker ──────────────────────────────────────────────
+let _rpOid=null, _rpRid=null;
+function assignRider(oid){ openRiderPicker(oid); }
+function openRiderPicker(oid){
+  const o=orders.find(x=>x.id===oid); if(!o)return;
+  _rpOid=oid; _rpRid=null;
+  document.getElementById('rp-oid').textContent=o.id;
+  document.getElementById('rp-addr-txt').textContent=`👤 ${o.customer} · 📍 ${(o.address||'').slice(0,45)}`;
+  const sorted=[...riders].sort((a,b)=>(b.online?1:0)-(a.online?1:0));
+  const el=document.getElementById('rp-rider-list');
+  if(!sorted.length){
+    el.innerHTML='<div class="empty-state"><span class="empty-icon">🚴</span><p>No riders added yet.<br>Add one in the Riders tab.</p></div>';
+    document.getElementById('rp-confirm-btn').disabled=true;
+    document.getElementById('rp-confirm-btn').textContent='No riders available';
+  } else {
+    el.innerHTML=sorted.map(r=>`
+      <div class="rider-pick-row" id="rpr-${r.id}" onclick="pickRider('${r.id}','${r.name.replace(/'/g,"\\'")}')">
+        <div class="rpr-av">${r.name[0].toUpperCase()}<div class="rpr-dot ${r.online?'on':'off'}"></div></div>
+        <div style="flex:1">
+          <div class="rpr-name">${r.name}</div>
+          <div class="rpr-meta">📞 ${r.phone||'—'} · ${r.online?'<span style="color:#16a34a;font-weight:800">🟢 Online</span>':'<span style="color:#9ca3af">⚫ Offline</span>'}</div>
+          <div class="rpr-meta">⭐ ${r.rating||5.0} · 📦 ${r.deliveries||0} deliveries</div>
+        </div>
+        <div class="rpr-check" id="rpr-chk-${r.id}"></div>
+      </div>`).join('');
+    document.getElementById('rp-confirm-btn').disabled=true;
+    document.getElementById('rp-confirm-btn').textContent='Select a rider above';
   }
+  document.getElementById('rp-overlay').classList.add('open');
 }
+function pickRider(rid,rname){
+  _rpRid=rid;
+  document.querySelectorAll('.rider-pick-row').forEach(r=>r.classList.remove('selected'));
+  document.querySelectorAll('[id^="rpr-chk-"]').forEach(c=>{c.textContent='';});
+  document.getElementById('rpr-'+rid)?.classList.add('selected');
+  const chk=document.getElementById('rpr-chk-'+rid); if(chk)chk.textContent='✓';
+  const btn=document.getElementById('rp-confirm-btn');
+  btn.disabled=false; btn.textContent=`✅ Assign to ${rname}`;
+}
+function closeRiderPicker(){ document.getElementById('rp-overlay').classList.remove('open'); _rpOid=null; _rpRid=null; }
+async function confirmRiderPick(){
+  if(!_rpOid||!_rpRid){showToast('⚠️ Select a rider first');return;}
+  const o=orders.find(x=>x.id===_rpOid); const r=riders.find(x=>x.id===_rpRid);
+  if(!o||!r){showToast('⚠️ Error, retry');return;}
+  const btn=document.getElementById('rp-confirm-btn');
+  btn.disabled=true; btn.textContent='⏳ Assigning…';
+  o.status='assigned'; o.rider=r.name;
+  try{
+    await dbPutOrder({...o,createdAt:o.createdAt||Date.now()});
+    closeRiderPicker(); renderAdminOrders(); updateAdminStats(); renderRiderList();
+    pushNotif('🚴 Rider Assigned',`${r.name} assigned to ${o.id}`,'rider');
+    showToast(`✅ ${r.name} assigned to ${o.id}!`);
+  }catch(e){ btn.disabled=false; btn.textContent=`✅ Assign to ${r.name}`; showToast('❌ Failed. Check connection.'); }
+}
+
 function adminFilter(f,el){adminCurFilter=f;document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderAdminOrders(f);}
 function switchAdminTab(tab,el){
   document.querySelectorAll('.admin-stab').forEach(t=>t.classList.remove('active'));el.classList.add('active');
-  ['orders','analytics','riders','zones','products'].forEach(t=>{
-    document.getElementById(`admin-tab-${t}`).style.display=t===tab?'flex':'none';
+  ['orders','home','analytics','riders','customers','zones','products','settings'].forEach(t=>{
+    const d=document.getElementById(`admin-tab-${t}`); if(d)d.style.display=t===tab?'flex':'none';
   });
   if(tab==='analytics') renderAnalytics();
   if(tab==='riders')    renderRiders();
+  if(tab==='customers') renderCustomers();
   if(tab==='zones')     renderAdminZones();
   if(tab==='products')  renderAdminProducts('all');
+  if(tab==='home')      renderAdminBanners();
 }
 
 // ============================================================
@@ -2769,33 +3297,72 @@ async function loadProductsFromFirestore(){
 }
 let revenueChart=null,statusChart=null;
 function renderAnalytics(){
-  const delivered=orders.filter(o=>o.status==='delivered');
-  const todayRev=delivered.reduce((s,o)=>s+o.total,0);
-  const avgVal=orders.length?Math.round(orders.reduce((s,o)=>s+o.total,0)/orders.length):0;
-  document.getElementById('ana-today-rev').textContent='₹'+todayRev;
-  document.getElementById('ana-avg').textContent='₹'+avgVal;
-  document.getElementById('ana-delivered').textContent=delivered.length;
-  document.getElementById('ana-customers').textContent=new Set(orders.map(o=>o.phone)).size;
-  // Revenue chart
-  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const revData=[1200,1850,980,2400,1650,2900,todayRev||1420];
+  // ── Only real data from the orders array ──
+  const today = new Date().toDateString();
+
+  // Today's delivered orders only
+  const deliveredToday = orders.filter(o=>
+    o.status==='delivered' && new Date(o.createdAt||0).toDateString()===today);
+
+  // All delivered (ever)
+  const deliveredAll = orders.filter(o=>o.status==='delivered');
+
+  const todayRev  = deliveredToday.reduce((s,o)=>s+o.total,0);
+  const avgVal    = orders.length ? Math.round(orders.reduce((s,o)=>s+o.total,0)/orders.length) : 0;
+  const custCount = new Set(orders.filter(o=>o.customerEmail).map(o=>o.customerEmail)).size;
+
+  document.getElementById('ana-today-rev').textContent  = '₹'+todayRev;
+  document.getElementById('ana-avg').textContent        = avgVal>0 ? '₹'+avgVal : '₹0';
+  document.getElementById('ana-delivered').textContent  = deliveredToday.length;
+  document.getElementById('ana-customers').textContent  = custCount;
+
+  // ── Revenue chart — real data for last 7 days ──
+  const days7=[], labels7=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const ds=d.toDateString();
+    labels7.push(['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]);
+    days7.push(orders.filter(o=>o.status==='delivered'&&new Date(o.createdAt||0).toDateString()===ds)
+      .reduce((s,o)=>s+o.total,0));
+  }
   const rCtx=document.getElementById('revenueChart').getContext('2d');
   if(revenueChart)revenueChart.destroy();
-  revenueChart=new Chart(rCtx,{type:'bar',data:{labels:days,datasets:[{label:'Revenue (₹)',data:revData,backgroundColor:'rgba(249,115,22,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#fde8d0'},ticks:{color:'#78716c',font:{size:11,family:'Nunito'}}},x:{grid:{display:false},ticks:{color:'#78716c',font:{size:11,family:'Nunito'}}}}}});
-  // Status chart
-  const statusData=[orders.filter(o=>o.status==='new').length,orders.filter(o=>o.status==='assigned').length,orders.filter(o=>o.status==='riding').length,orders.filter(o=>o.status==='delivered').length];
+  revenueChart=new Chart(rCtx,{type:'bar',data:{labels:labels7,datasets:[{label:'Revenue (₹)',data:days7,backgroundColor:'rgba(249,115,22,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#fde8d0'},ticks:{color:'#78716c',font:{size:11,family:'Nunito'}}},x:{grid:{display:false},ticks:{color:'#78716c',font:{size:11,family:'Nunito'}}}}}});
+
+  // ── Status chart — real counts ──
+  const statusData=[
+    orders.filter(o=>o.status==='new').length,
+    orders.filter(o=>o.status==='assigned').length,
+    orders.filter(o=>o.status==='riding').length,
+    orders.filter(o=>o.status==='delivered').length
+  ];
   const sCtx=document.getElementById('statusChart').getContext('2d');
   if(statusChart)statusChart.destroy();
-  statusChart=new Chart(sCtx,{type:'doughnut',data:{labels:['New','Assigned','On Way','Delivered'],datasets:[{data:statusData,backgroundColor:['#f97316','#fbbf24','#3b82f6','#22c55e'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11,family:'Nunito'},padding:14}}}}});
-  // Top products
-  const topProds=products.sort((a,b)=>b.pop-a.pop).slice(0,5);
-  document.getElementById('top-products-list').innerHTML=topProds.map((p,i)=>`
+  // Only render if there are orders to avoid empty doughnut
+  if(statusData.reduce((a,b)=>a+b,0)===0){
+    sCtx.canvas.parentElement.innerHTML='<div class="empty-state"><span class="empty-icon">📊</span><p>No orders yet</p></div>';
+  } else {
+    statusChart=new Chart(sCtx,{type:'doughnut',data:{labels:['New','Assigned','On Way','Delivered'],datasets:[{data:statusData,backgroundColor:['#f97316','#fbbf24','#3b82f6','#22c55e'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11,family:'Nunito'},padding:14}}}}});
+  }
+
+  // ── Top products by how many times ordered (real) ──
+  const prodCount={};
+  orders.forEach(o=>{
+    (o.rawItems||[]).forEach(i=>{
+      prodCount[i.id]=(prodCount[i.id]||0)+i.qty;
+    });
+  });
+  const topProds=[...products]
+    .sort((a,b)=>(prodCount[b.id]||0)-(prodCount[a.id]||0))
+    .slice(0,5);
+  document.getElementById('top-products-list').innerHTML=topProds.length?topProds.map((p,i)=>`
     <div class="top-product">
       <div class="tp-rank">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]}</div>
       <img class="tp-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
-      <div style="flex:1"><div class="tp-name">${p.name}</div><div class="tp-sales">Popularity: ${p.pop}%</div></div>
+      <div style="flex:1"><div class="tp-name">${p.name}</div><div class="tp-sales">${prodCount[p.id]||0} units sold</div></div>
       <div class="tp-rev">₹${p.price}</div>
-    </div>`).join('');
+    </div>`).join('')
+    :'<div class="empty-state"><span class="empty-icon">🛒</span><p>No sales data yet</p></div>';
 }
 
 // ============================================================
@@ -2924,18 +3491,183 @@ function assignOrderToRider(rid){
 }
 
 // ============================================================
-// ZONES
+// ZONES — Edit, Delete, Toggle, Add via modal
 // ============================================================
 function renderAdminZones(){
-  document.getElementById('admin-zones-list').innerHTML=deliveryZones.map(z=>`
+  const el=document.getElementById('admin-zones-list');
+  if(!deliveryZones.length){
+    el.innerHTML='<div class="empty-state"><span class="empty-icon">🗺️</span><p>No zones yet. Add one above.</p></div>';
+    return;
+  }
+  el.innerHTML=deliveryZones.map(z=>`
     <div class="zone-card">
       <div class="zone-dot" style="background:${z.color}"></div>
-      <div class="zone-info"><div class="zone-name">${z.name}</div><div class="zone-areas">${z.areas}</div><div style="font-size:11px;color:var(--or1);margin-top:3px;font-weight:700">Fee: ₹${z.fee}</div></div>
-      <button class="zone-toggle ${z.active?'on':''}" onclick="toggleZone('${z.id}')"></button>
+      <div class="zone-info">
+        <div class="zone-name">${z.name}</div>
+        <div class="zone-areas">${z.areas}</div>
+        <div style="font-size:11px;color:var(--or1);margin-top:3px;font-weight:700">₹${z.fee} delivery fee · ${z.active?'<span style="color:var(--gr1)">✅ Active</span>':'<span style="color:var(--red)">❌ Inactive</span>'}</div>
+      </div>
+      <div class="zone-actions">
+        <button class="zone-toggle ${z.active?'on':''}" onclick="toggleZone('${z.id}')" title="${z.active?'Disable':'Enable'}"></button>
+        <button class="zone-edit-btn" onclick="openZoneModal('${z.id}')" title="Edit">✏️</button>
+        <button class="zone-del-btn"  onclick="deleteZone('${z.id}','${z.name.replace(/'/g,"\\'")}')" title="Delete">🗑️</button>
+      </div>
     </div>`).join('');
 }
-function toggleZone(id){const z=deliveryZones.find(x=>x.id===id);if(!z)return;z.active=!z.active;dbPut('zones',z).catch(()=>{});renderAdminZones();populateZoneDropdown();showToast(`${z.active?'✅':'❌'} ${z.name} ${z.active?'enabled':'disabled'}`);}
-function addZone(){const name=prompt('Zone name:');if(!name)return;const areas=prompt('Areas covered:');const fee=parseInt(prompt('Delivery fee (₹):')||'50');const colors=['#8b5cf6','#06b6d4','#ec4899','#84cc16'];deliveryZones.push({id:'z'+Date.now(),name,areas:areas||'',fee,color:colors[deliveryZones.length%4],active:true});renderAdminZones();populateZoneDropdown();showToast('✅ Zone added!');}
+
+function openZoneModal(zid){
+  const isEdit=!!zid;
+  document.getElementById('zone-modal-title').textContent=isEdit?'✏️ Edit Zone':'➕ Add Zone';
+  document.getElementById('zone-save-btn-txt').textContent=isEdit?'✅ Save Changes':'✅ Add Zone';
+  document.getElementById('zone-edit-id').value=zid||'';
+  if(isEdit){
+    const z=deliveryZones.find(x=>x.id===zid);
+    if(!z)return;
+    document.getElementById('zone-input-name').value=z.name;
+    document.getElementById('zone-input-areas').value=z.areas;
+    document.getElementById('zone-input-fee').value=z.fee;
+    document.getElementById('zone-input-color').value=z.color;
+    pickZoneColor(z.color,null);
+  } else {
+    document.getElementById('zone-input-name').value='';
+    document.getElementById('zone-input-areas').value='';
+    document.getElementById('zone-input-fee').value='30';
+    document.getElementById('zone-input-color').value='#f97316';
+    pickZoneColor('#f97316',null);
+  }
+  document.getElementById('zone-modal').classList.add('open');
+}
+
+function pickZoneColor(color,el){
+  document.getElementById('zone-input-color').value=color;
+  document.querySelectorAll('.zone-color-dot').forEach(d=>d.classList.toggle('selected',d.dataset.color===color));
+}
+
+function saveZone(){
+  const name =document.getElementById('zone-input-name').value.trim();
+  const areas=document.getElementById('zone-input-areas').value.trim();
+  const fee  =parseInt(document.getElementById('zone-input-fee').value)||0;
+  const color=document.getElementById('zone-input-color').value||'#f97316';
+  const zid  =document.getElementById('zone-edit-id').value;
+  if(!name){showToast('⚠️ Enter zone name');return;}
+  if(zid){
+    const idx=deliveryZones.findIndex(z=>z.id===zid);
+    if(idx>=0){
+      deliveryZones[idx]={...deliveryZones[idx],name,areas,fee,color};
+      if(fdb)fdb.collection('zones').doc(zid).set(deliveryZones[idx]).catch(()=>{});
+      showToast('✅ Zone updated!');
+    }
+  } else {
+    const z={id:'z'+Date.now(),name,areas,fee,color,active:true};
+    deliveryZones.push(z);
+    if(fdb)fdb.collection('zones').doc(z.id).set(z).catch(()=>{});
+    showToast('✅ Zone added!');
+  }
+  document.getElementById('zone-modal').classList.remove('open');
+  renderAdminZones();populateZoneDropdown();
+}
+
+function deleteZone(zid,name){
+  if(!confirm(`Delete zone "${name}"? This cannot be undone.`))return;
+  deliveryZones=deliveryZones.filter(z=>z.id!==zid);
+  if(fdb)fdb.collection('zones').doc(zid).delete().catch(()=>{});
+  renderAdminZones();populateZoneDropdown();
+  showToast(`🗑️ "${name}" deleted`);
+}
+
+function toggleZone(id){
+  const z=deliveryZones.find(x=>x.id===id);
+  if(!z)return;
+  z.active=!z.active;
+  if(fdb)fdb.collection('zones').doc(id).set(z).catch(()=>{});
+  else dbPut('zones',z).catch(()=>{});
+  renderAdminZones();populateZoneDropdown();
+  showToast(`${z.active?'✅':'❌'} ${z.name} ${z.active?'enabled':'disabled'}`);
+}
+function addZone(){openZoneModal(null);}
+
+// ============================================================
+// CUSTOMER MANAGEMENT — real-time list, ban/unban
+// ============================================================
+let _custSearchQ='';
+
+async function renderCustomers(q){
+  if(q!==undefined)_custSearchQ=q;
+  else q=_custSearchQ;
+
+  // Load fresh from Firestore every time
+  if(fdb){
+    try{
+      const snap=await fdb.collection('users').where('role','==','customer').get();
+      allCustomers=snap.docs.map(d=>({uid:d.id,...d.data()}));
+      // Also load any banned non-customers (in case role changed)
+      const banSnap=await fdb.collection('users').where('banned','==',true).get();
+      banSnap.docs.forEach(d=>{
+        bannedCustomers.add(d.id);
+        if(!allCustomers.find(c=>c.uid===d.id)){
+          allCustomers.push({uid:d.id,...d.data()});
+        }
+      });
+      allCustomers.forEach(c=>{ if(c.banned)bannedCustomers.add(c.uid); });
+    }catch(e){console.log('loadCustomers err',e);}
+  }
+
+  const list=q
+    ? allCustomers.filter(c=>
+        (c.name||'').toLowerCase().includes(q.toLowerCase())||
+        (c.email||'').toLowerCase().includes(q.toLowerCase()))
+    : allCustomers;
+
+  // Stats
+  const totalC =allCustomers.length;
+  const bannedC=allCustomers.filter(c=>bannedCustomers.has(c.uid)).length;
+  document.getElementById('csm-total').textContent =totalC;
+  document.getElementById('csm-active').textContent=totalC-bannedC;
+  document.getElementById('csm-banned').textContent=bannedC;
+
+  const el=document.getElementById('customers-mgmt-list');
+  if(!list.length){
+    el.innerHTML='<div class="empty-state"><span class="empty-icon">👥</span><p>'+(q?'No customers match your search.':'No customers yet.')+'</p></div>';
+    return;
+  }
+
+  el.innerHTML=list.map((c,i)=>{
+    const isBanned=bannedCustomers.has(c.uid);
+    const orderCount=orders.filter(o=>o.customerEmail===c.email).length;
+    const totalSpent=orders.filter(o=>o.customerEmail===c.email).reduce((s,o)=>s+o.total,0);
+    return`<div class="cust-mgmt-card ${isBanned?'banned':''}" style="animation-delay:${i*0.04}s">
+      <div class="cust-av ${isBanned?'banned':''}">${(c.name||c.email||'U')[0].toUpperCase()}</div>
+      <div class="cust-info">
+        <div class="cust-name-lbl">${c.name||'Unknown'}</div>
+        <div class="cust-email-lbl">${c.email||c.phone||'—'}</div>
+        <div class="cust-stats-lbl">📦 ${orderCount} orders · ₹${totalSpent} spent · ${isBanned?'<span style="color:var(--red)">🚫 Banned</span>':'<span style="color:var(--gr1)">✅ Active</span>'}</div>
+      </div>
+      ${isBanned
+        ?`<button class="cust-ban-btn do-unban" onclick="unbanCustomer('${c.uid}','${(c.name||'').replace(/'/g,"\\'")}')">✅ Unban</button>`
+        :`<button class="cust-ban-btn do-ban"   onclick="banCustomer('${c.uid}','${(c.name||'').replace(/'/g,"\\'")}')">🚫 Ban</button>`
+      }
+    </div>`;
+  }).join('');
+}
+
+async function banCustomer(uid,name){
+  if(!confirm(`Ban "${name}"?\n\nThey will see a "Account Terminated" screen and cannot use the app.`))return;
+  bannedCustomers.add(uid);
+  if(fdb)await fdb.collection('users').doc(uid).set({banned:true,bannedAt:Date.now()},{merge:true}).catch(()=>{});
+  renderCustomers();
+  showToast(`🚫 ${name} has been banned`);
+}
+
+async function unbanCustomer(uid,name){
+  bannedCustomers.delete(uid);
+  if(fdb)await fdb.collection('users').doc(uid).set({banned:false},{merge:true}).catch(()=>{});
+  renderCustomers();
+  showToast(`✅ ${name} has been unbanned`);
+}
+
+function filterCustomerList(q){
+  renderCustomers(q);
+}
 
 // ============================================================
 // RIDER VIEW
@@ -3119,7 +3851,13 @@ initDB().then(()=>{
         // Always fetch fresh from Firestore — prevents stale name bug
         const doc  = await fdb.collection('users').doc(firebaseUser.uid).get();
         const role = doc.exists ? doc.data().role : 'customer';
-        // Use Firestore name first, then Firebase Auth display name, then email prefix
+        // Check ban before entering app
+        if(role==='customer' && doc.exists && doc.data().banned===true){
+          auth.signOut().catch(()=>{});
+          document.getElementById('screen-login').classList.remove('active');
+          document.getElementById('ban-screen').style.display='flex';
+          return;
+        }
         const name = (doc.exists && doc.data().name) ? doc.data().name
                    : (firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User');
         const phone = doc.exists ? (doc.data().phone||'') : '';
@@ -3129,6 +3867,7 @@ initDB().then(()=>{
         document.getElementById('notif-btn').style.display='flex';
         await loadAllData();
         setupUI();
+        startStoreListener(); // subscribe to store online/offline status
         showToast('👋 Welcome back, '+name+'!');
       } catch(e){ console.log('Session restore error',e); }
     }
@@ -3136,29 +3875,534 @@ initDB().then(()=>{
 }).catch(()=>{});
 
 // Close modals on overlay click
-['checkout-modal','add-addr-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+['checkout-modal','add-addr-modal','zone-modal'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+});
 document.getElementById('track-modal').addEventListener('click',function(e){if(e.target===this)closeTrackModal();});
 document.getElementById('notif-panel').addEventListener('click',function(e){if(e.target===this)toggleNotifPanel();});
+document.getElementById('rp-overlay').addEventListener('click',function(e){if(e.target===this)closeRiderPicker();});
+document.getElementById('loc-popup-overlay').addEventListener('click',function(e){if(e.target===this)skipLocation();});
 
-// ── Scroll to hide / show header ──────────────────────────
+// ============================================================
+// LOCATION POPUP
+// ============================================================
+function grantLocationFromPopup(){
+  document.getElementById('loc-popup-overlay').classList.remove('open');
+  if(currentUser) localStorage.setItem('fd_loc_shown_'+currentUser.uid,'1');
+  useCurrentLocation();
+}
+function skipLocation(){
+  document.getElementById('loc-popup-overlay').classList.remove('open');
+  if(currentUser) localStorage.setItem('fd_loc_shown_'+currentUser.uid,'1');
+  openLocScreen();
+}
+
+// ============================================================
+// LOCATION SCREEN
+// ============================================================
+function openLocScreen(){
+  renderLocSaved();
+  document.getElementById('loc-screen').classList.add('open');
+  document.getElementById('loc-search-inp').value='';
+  document.getElementById('loc-search-results').style.display='none';
+  document.getElementById('loc-saved-section').style.display='';
+  document.getElementById('loc-recent-section').style.display='';
+}
+function closeLocScreen(){ document.getElementById('loc-screen').classList.remove('open'); }
+
+function renderLocSaved(){
+  const el=document.getElementById('loc-saved-list');
+  if(!savedAddresses.length){
+    el.innerHTML='<div style="padding:14px 18px;font-size:13px;color:var(--gray);font-weight:600">No saved addresses yet.</div>';
+    return;
+  }
+  el.innerHTML=savedAddresses.map(a=>`
+    <div class="loc-addr-item" onclick="selectSavedAddress('${a.id}')">
+      <div class="loc-addr-ic">${a.type==='Home'?'🏠':a.type==='Work'?'💼':'📍'}</div>
+      <div>
+        <div class="loc-addr-name">${a.saveAs||a.type}</div>
+        <div class="loc-addr-sub">${a.building?a.building+', ':''}${a.area||a.text||''}</div>
+      </div>
+    </div>`).join('');
+
+  const rl=document.getElementById('loc-recent-list');
+  const recent=savedAddresses.slice(0,2);
+  rl.innerHTML=recent.map(a=>`
+    <div class="loc-addr-item" onclick="selectSavedAddress('${a.id}')">
+      <div class="loc-addr-ic">🕐</div>
+      <div>
+        <div class="loc-addr-name">${a.saveAs||a.type}</div>
+        <div class="loc-addr-sub">${a.building?a.building+', ':''}${a.area||a.text||''}</div>
+      </div>
+    </div>`).join('');
+}
+
+function selectSavedAddress(id){
+  const a=savedAddresses.find(x=>x.id===id); if(!a)return;
+  setActiveAddress(a);
+  closeLocScreen();
+}
+
+function setActiveAddress(a){
+  if(currentUser) currentUser.currentAddress=a;
+  updateLocBar();
+  showToast(`📍 Delivering to ${a.saveAs||a.type}`);
+}
+
+function updateLocBar(){
+  const el=document.getElementById('loc-bar-addr');
+  if(!el)return;
+  const a=currentUser?.currentAddress || savedAddresses[0];
+  if(a){
+    el.innerHTML=`${a.saveAs||a.type||'Home'} <span class="loc-bar-caret">▼</span>`;
+  } else {
+    el.innerHTML=`Set your location <span class="loc-bar-caret">▼</span>`;
+  }
+}
+
+function searchLocations(q){
+  const sr=document.getElementById('loc-search-results');
+  const ss=document.getElementById('loc-saved-section');
+  const rs=document.getElementById('loc-recent-section');
+  if(!q){ sr.style.display='none'; ss.style.display=''; rs.style.display=''; return; }
+  sr.style.display=''; ss.style.display='none'; rs.style.display='none';
+  const matches=savedAddresses.filter(a=>(a.saveAs||a.type||'').toLowerCase().includes(q.toLowerCase())||(a.area||a.text||'').toLowerCase().includes(q.toLowerCase()));
+  const rl=document.getElementById('loc-results-list');
+  rl.innerHTML=matches.length?matches.map(a=>`
+    <div class="loc-addr-item" onclick="selectSavedAddress('${a.id}')">
+      <div class="loc-addr-ic">📍</div>
+      <div><div class="loc-addr-name">${a.saveAs||a.type}</div><div class="loc-addr-sub">${a.area||a.text||''}</div></div>
+    </div>`).join('')
+    :'<div style="padding:14px 18px;font-size:13px;color:var(--gray);font-weight:600">No results. Try adding a new address.</div>';
+}
+
+function useCurrentLocation(){
+  closeLocScreen();
+  if(!navigator.geolocation){ showToast('❌ Location not supported'); return; }
+  showToast('📡 Getting your location…');
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const lat=pos.coords.latitude, lng=pos.coords.longitude;
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+      .then(r=>r.json()).then(d=>{
+        const a=d.address||{};
+        const area=a.suburb||a.neighbourhood||a.village||a.town||a.city||'Your location';
+        const addr={id:'gps',saveAs:'Current Location',type:'Other',area,building:'',lat,lng,text:area};
+        setActiveAddress(addr);
+      }).catch(()=>{ setActiveAddress({id:'gps',saveAs:'Current Location',type:'Other',area:'Your location',text:'Your location'}); });
+  }, ()=>showToast('❌ Could not get location'), {enableHighAccuracy:true,timeout:8000});
+}
+
+// ============================================================
+// ADDRESS DETAIL FORM
+// ============================================================
+let _addrDetailData={lat:null,lng:null,area:''};
+function openAddrDetailScreen(prefill){
+  closeLocScreen();
+  _addrDetailData={lat:prefill?.lat||null, lng:prefill?.lng||null, area:prefill?.area||''};
+  document.getElementById('addr-receiver-name').value='';
+  document.getElementById('addr-receiver-phone').value='';
+  document.getElementById('addr-building').value='';
+  document.getElementById('addr-street').value='';
+  document.getElementById('addr-area').value=prefill?.area||'';
+  document.getElementById('addr-save-as').value='';
+  document.getElementById('addr-instructions').value='';
+  document.getElementById('addr-detail-location-lbl').textContent=prefill?.area||'Add Address';
+  document.getElementById('addr-map-lbl').textContent=prefill?.area?`📍 ${prefill.area}`:'Tap to use current location';
+  setAddrType('house',document.getElementById('atype-house'));
+  document.getElementById('addr-detail-screen').classList.add('open');
+}
+function closeAddrDetailScreen(){ document.getElementById('addr-detail-screen').classList.remove('open'); }
+function setAddrType(type,btn){
+  currentAddrType=type;
+  document.querySelectorAll('.addr-type-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+function useMyDetails(){
+  const cb=document.getElementById('use-my-details-cb');
+  if(cb.checked && currentUser){
+    document.getElementById('addr-receiver-name').value=currentUser.name||'';
+    document.getElementById('addr-receiver-phone').value=currentUser.phone||'';
+  }
+}
+function saveAddressDetail(){
+  const rName=document.getElementById('addr-receiver-name').value.trim();
+  const rPhone=document.getElementById('addr-receiver-phone').value.trim();
+  const building=document.getElementById('addr-building').value.trim();
+  const street=document.getElementById('addr-street').value.trim();
+  const area=document.getElementById('addr-area').value.trim()||_addrDetailData.area;
+  const saveAs=document.getElementById('addr-save-as').value.trim();
+  const instr=document.getElementById('addr-instructions').value.trim();
+  if(!rName){showToast('⚠️ Enter receiver name');return;}
+  if(!rPhone){showToast('⚠️ Enter receiver number');return;}
+  if(!building){showToast('⚠️ Enter building/floor');return;}
+  if(!saveAs){showToast('⚠️ Enter a name to save address as');return;}
+  const a={
+    id:'a'+Date.now(), type:currentAddrType==='house'?'Home':currentAddrType==='office'?'Work':'Other',
+    saveAs, rName, rPhone, building, street, area, instructions:instr,
+    lat:_addrDetailData.lat, lng:_addrDetailData.lng,
+    text:`${building}${street?', '+street:''}, ${area}`.trim()
+  };
+  savedAddresses.push(a);
+  dbPut('addresses',{id:a.id,...a}).catch(()=>{});
+  if(fdb&&currentUser?.uid) fdb.collection('users').doc(currentUser.uid).collection('addresses').doc(a.id).set(a).catch(()=>{});
+  setActiveAddress(a);
+  closeAddrDetailScreen();
+  showToast('✅ Address saved!');
+}
+
+// ============================================================
+// BANNER SLIDER
+// ============================================================
+function renderBannerSlider(){
+  const track=document.getElementById('banner-track');
+  const dots=document.getElementById('banner-dots');
+  const slider=document.getElementById('banner-slider');
+  if(!track||!banners.length){if(slider)slider.style.display='none';return;}
+  slider.style.display='';
+  track.innerHTML=banners.map(b=>`
+    <div class="banner-slide" style="background:${b.bg||'var(--dark)'}">
+      ${b.img?`<img src="${b.img}" alt="${b.title||''}" onerror="this.style.display='none'">`:''}
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center">
+        <div style="font-size:32px;margin-bottom:4px">${b.emoji||''}</div>
+        <div style="font-family:'Fraunces',sans-serif;font-size:17px;font-weight:900;color:${b.textColor||'#fff'};text-shadow:0 1px 4px rgba(0,0,0,.3)">${b.title||''}</div>
+        <div style="font-size:12px;font-weight:700;color:${b.textColor||'rgba(255,255,255,.85)'};margin-top:3px;text-shadow:0 1px 4px rgba(0,0,0,.2)">${b.subtitle||''}</div>
+      </div>
+    </div>`).join('');
+  dots.innerHTML=banners.map((_,i)=>`<div class="banner-dot ${i===0?'active':''}" onclick="goToBanner(${i})"></div>`).join('');
+  bannerCurrent=0;
+  clearInterval(bannerInterval);
+  if(banners.length>1) bannerInterval=setInterval(()=>goToBanner((bannerCurrent+1)%banners.length),4000);
+}
+function goToBanner(i){
+  bannerCurrent=i;
+  document.getElementById('banner-track').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.banner-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+
+// ── Admin Banner Management ─────────────────────────────────
+function renderAdminBanners(){
+  const el=document.getElementById('admin-banners-list');
+  if(!banners.length){el.innerHTML='<div class="empty-state"><span class="empty-icon">🖼️</span><p>No banners yet. Add one above.</p></div>';return;}
+  el.innerHTML=banners.map((b,i)=>`
+    <div style="background:#fff;border-radius:var(--r);margin:0 14px 12px;overflow:hidden;box-shadow:0 2px 10px rgba(249,115,22,.07)">
+      <div class="banner-slide" style="background:${b.bg};height:80px;position:relative;flex-shrink:0">
+        ${b.img?`<img src="${b.img}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:''}
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px">
+          <span style="font-size:24px">${b.emoji||''}</span>
+          <div><div style="font-weight:900;font-size:14px;color:${b.textColor||'#fff'}">${b.title||''}</div><div style="font-size:11px;color:${b.textColor||'rgba(255,255,255,.8)'}">${b.subtitle||''}</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;padding:10px 14px;align-items:center">
+        <div style="flex:1;font-size:12px;font-weight:700;color:var(--gray)">Banner ${i+1}</div>
+        <button onclick="editBanner(${i})" style="background:var(--or3);border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;color:var(--or2)">✏️ Edit</button>
+        <button onclick="deleteBanner(${i})" style="background:#fee2e2;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;color:#991b1b">🗑️ Delete</button>
+      </div>
+    </div>`).join('');
+}
+function addBanner(){
+  const title=prompt('Banner title:'); if(!title)return;
+  const subtitle=prompt('Subtitle (optional):')||'';
+  const emoji=prompt('Emoji (optional):')||'🎉';
+  const img=prompt('Image URL (optional, leave blank for color):')||'';
+  const bgs=['linear-gradient(135deg,#1c0a00,#f97316)','linear-gradient(135deg,#16a34a,#15803d)','linear-gradient(135deg,#1e3a5f,#3b82f6)','linear-gradient(135deg,#7c3aed,#4f46e5)'];
+  banners.push({id:'b'+Date.now(),title,subtitle,emoji,img,bg:bgs[banners.length%4],textColor:'#fff'});
+  saveBannersToFirestore();
+  renderAdminBanners();
+  renderBannerSlider();
+  showToast('✅ Banner added!');
+}
+function editBanner(i){
+  const b=banners[i]; if(!b)return;
+  const title=prompt('Banner title:',b.title); if(title===null)return;
+  const subtitle=prompt('Subtitle:',b.subtitle)||'';
+  const emoji=prompt('Emoji:',b.emoji)||'';
+  const img=prompt('Image URL:',b.img)||'';
+  banners[i]={...b,title,subtitle,emoji,img};
+  saveBannersToFirestore();
+  renderAdminBanners();
+  renderBannerSlider();
+  showToast('✅ Banner updated!');
+}
+function deleteBanner(i){
+  if(!confirm('Delete this banner?'))return;
+  banners.splice(i,1);
+  saveBannersToFirestore();
+  renderAdminBanners();
+  renderBannerSlider();
+  showToast('🗑️ Banner deleted');
+}
+async function saveBannersToFirestore(){
+  if(!fdb)return;
+  fdb.collection('settings').doc('banners').set({list:banners,updatedAt:Date.now()}).catch(()=>{});
+}
+async function loadBannersFromFirestore(){
+  if(!fdb)return;
+  try{
+    const doc=await fdb.collection('settings').doc('banners').get();
+    if(doc.exists&&doc.data().list?.length) banners=doc.data().list;
+  }catch(e){}
+}
+
+// ── Smooth header + bottom-nav hide/show on scroll ──────────
+// Banner + free-delivery strip are inside scroll-area so they scroll naturally.
+// cust-header (location bar + search) and bottom-nav both hide on scroll down.
 (function(){
-  var prev=0, ticking=false;
+  var prev=0,ticking=false;
   function run(){
     var el=document.getElementById('shop-scroll');
     var hdr=document.querySelector('#sub-shop .cust-header');
-    if(!el||!hdr){ticking=false;return;}
-    var y=el.scrollTop;
-    if(y>60 && y>prev)       hdr.classList.add('scrolled');   // scrolling down
-    else if(y<prev-10||y<10) hdr.classList.remove('scrolled');// scrolling up or at top
+    var nav=document.getElementById('bottom-nav');
+    if(!el){ticking=false;return;}
+    var y=el.scrollTop,d=y-prev;
+
+    if(y>30&&d>0){
+      // Scrolling DOWN — hide header and bottom nav
+      if(hdr) hdr.classList.add('scrolled');
+      if(nav) nav.classList.add('nav-hidden');
+    } else if(d<-10||y<10){
+      // Scrolling UP or back at top — show both
+      if(hdr) hdr.classList.remove('scrolled');
+      if(nav) nav.classList.remove('nav-hidden');
+    }
     prev=y;ticking=false;
   }
   function onScroll(){if(!ticking){ticking=true;(requestAnimationFrame||setTimeout)(run,0);}}
-  function attach(){
+  setTimeout(function(){
     var el=document.getElementById('shop-scroll');
-    if(el) el.addEventListener('scroll',onScroll,{passive:true});
-  }
-  setTimeout(attach,300);
+    if(el)el.addEventListener('scroll',onScroll,{passive:true});
+  },400);
 })();
+
+// ============================================================
+// STORE ONLINE / OFFLINE SYSTEM
+// ============================================================
+
+function startStoreListener(){
+  if(!fdb) return;
+  if(storeListener) storeListener(); // unsub previous
+  storeListener = fdb.collection('settings').doc('storeStatus').onSnapshot(snap=>{
+    if(snap.exists){
+      storeOfflineData = snap.data();
+      storeOffline = storeOfflineData.offline === true;
+    } else {
+      storeOffline = false;
+      storeOfflineData = {};
+    }
+    applyStoreOfflineUI();
+  }, err=>console.log('storeStatus listener err:',err));
+}
+
+function applyStoreOfflineUI(){
+  const role = currentUser?.role;
+  const overlay = document.getElementById('store-offline-overlay');
+
+  // Admins and riders are exempt — never show overlay
+  if(role === 'admin' || role === 'rider'){
+    overlay.classList.remove('active');
+    updateAdminStoreUI();
+    return;
+  }
+
+  if(storeOffline){
+    // Show fullscreen overlay for customers
+    const msg = storeOfflineData.message || 'Sorry for the inconvenience! We\'ll be back shortly.';
+    const returnTs = storeOfflineData.returnTime; // epoch ms or null
+    document.getElementById('offline-overlay-msg').textContent = msg;
+    if(returnTs){
+      const d = new Date(returnTs);
+      document.getElementById('offline-return-time').textContent = formatTime12(d);
+    } else {
+      document.getElementById('offline-return-time').textContent = 'Soon';
+    }
+    overlay.classList.add('active');
+    startOfflineCountdown(returnTs);
+  } else {
+    overlay.classList.remove('active');
+    stopOfflineCountdown();
+  }
+  updateNavOfflinePill();
+}
+
+function updateAdminStoreUI(){
+  const chk = document.getElementById('store-toggle-chk');
+  const dot = document.getElementById('store-status-dot');
+  const title = document.getElementById('store-ctrl-title');
+  const sub = document.getElementById('store-ctrl-sub');
+  const offSec = document.getElementById('offline-config-section');
+  const onSec = document.getElementById('online-config-section');
+  const hdrBadge = document.getElementById('admin-hdr-store-badge');
+  const hdrDot = document.getElementById('admin-hdr-dot');
+  const hdrLabel = document.getElementById('admin-hdr-store-label');
+
+  if(storeOffline){
+    if(chk){ chk.checked = false; }
+    if(dot){ dot.classList.add('offline'); }
+    if(title) title.textContent = '🔴 Store is Offline';
+    if(sub) sub.textContent = 'Customers cannot place orders right now';
+    if(offSec) offSec.style.display = 'none';
+    if(onSec){
+      onSec.style.display = 'block';
+      const rt = storeOfflineData.returnTime;
+      const label = document.getElementById('ctrl-return-time-label');
+      if(label) label.textContent = rt ? formatTime12(new Date(rt)) : 'Not set';
+    }
+    // Header badge — red
+    if(hdrBadge){ hdrBadge.style.background='rgba(239,68,68,.18)'; hdrBadge.style.color='#fca5a5'; hdrBadge.style.borderColor='rgba(239,68,68,.3)'; }
+    if(hdrDot){ hdrDot.style.background='#ef4444'; }
+    if(hdrLabel) hdrLabel.textContent = 'Offline';
+  } else {
+    if(chk){ chk.checked = true; }
+    if(dot){ dot.classList.remove('offline'); }
+    if(title) title.textContent = '🟢 Store is Online';
+    if(sub) sub.textContent = 'Customers can browse and place orders';
+    if(offSec && !pendingOfflineOnline) offSec.style.display = 'none';
+    if(onSec) onSec.style.display = 'none';
+    // Header badge — green
+    if(hdrBadge){ hdrBadge.style.background='rgba(22,163,74,.18)'; hdrBadge.style.color='#86efac'; hdrBadge.style.borderColor='rgba(22,163,74,.3)'; }
+    if(hdrDot){ hdrDot.style.background='#4ade80'; }
+    if(hdrLabel) hdrLabel.textContent = 'Online';
+  }
+  updateNavOfflinePill();
+}
+
+function updateNavOfflinePill(){
+  const pill = document.getElementById('nav-offline-pill');
+  if(!pill) return;
+  // Show pill for admin/rider when store is offline
+  const role = currentUser?.role;
+  if(storeOffline && (role==='admin' || role==='rider')){
+    pill.classList.add('show');
+  } else {
+    pill.classList.remove('show');
+  }
+}
+
+function handleStoreToggleChange(isChecked){
+  const offSec = document.getElementById('offline-config-section');
+  const onSec = document.getElementById('online-config-section');
+  if(!isChecked){
+    // Toggled to offline — show config
+    pendingOfflineOnline = true;
+    if(offSec) offSec.style.display = 'block';
+    if(onSec)  onSec.style.display = 'none';
+    // Default preset: 1 hour
+    applyPreset(60, document.querySelector('.time-preset-btn:nth-child(2)'));
+  } else {
+    // Toggled back to online while config was open — just go online
+    pendingOfflineOnline = false;
+    applyStoreOnline();
+  }
+}
+
+// Admin nav pill click — jump to settings tab
+function adminGoToStoreCtrl(){
+  switchView('admin', document.getElementById('tab-admin'));
+  const settingsBtn = document.getElementById('ast-settings');
+  if(settingsBtn) switchAdminTab('settings', settingsBtn);
+}
+
+// Preset buttons — set return time from now + minutes
+function applyPreset(minutes, el){
+  document.querySelectorAll('.time-preset-btn').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const customRow = document.getElementById('custom-time-row');
+  const input = document.getElementById('offline-return-input');
+  if(minutes === 0){
+    // Custom — show time picker
+    if(customRow) customRow.style.display = 'flex';
+    // Default to current time + 1hr
+    const d = new Date(Date.now() + 60*60*1000);
+    if(input) input.value = padTwo(d.getHours())+':'+padTwo(d.getMinutes());
+  } else {
+    if(customRow) customRow.style.display = 'none';
+    const d = new Date(Date.now() + minutes*60*1000);
+    if(input) input.value = padTwo(d.getHours())+':'+padTwo(d.getMinutes());
+  }
+}
+
+function padTwo(n){ return String(n).padStart(2,'0'); }
+
+function formatTime12(d){
+  let h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return h + ':' + padTwo(m) + ' ' + ampm;
+}
+
+async function applyStoreOffline(){
+  if(!fdb){ showToast('⚠️ Not connected'); return; }
+  const input = document.getElementById('offline-return-input');
+  const msgEl = document.getElementById('offline-custom-msg');
+  let returnTs = null;
+  if(input && input.value){
+    const [hh, mm] = input.value.split(':').map(Number);
+    const now = new Date();
+    const ret = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, mm, 0, 0);
+    // If time is in the past (e.g. 2am now it's 3am) bump to next day
+    if(ret <= now) ret.setDate(ret.getDate()+1);
+    returnTs = ret.getTime();
+  }
+  const msg = (msgEl && msgEl.value.trim()) ? msgEl.value.trim() : 'Sorry for the inconvenience! We\'ll be back shortly.';
+  try{
+    await fdb.collection('settings').doc('storeStatus').set({
+      offline: true,
+      message: msg,
+      returnTime: returnTs,
+      updatedAt: Date.now()
+    });
+    pendingOfflineOnline = false;
+    showToast('🔴 Store is now Offline');
+  } catch(e){
+    showToast('⚠️ Error: '+e.message);
+  }
+}
+
+async function applyStoreOnline(){
+  if(!fdb){ showToast('⚠️ Not connected'); return; }
+  try{
+    await fdb.collection('settings').doc('storeStatus').set({
+      offline: false,
+      updatedAt: Date.now()
+    });
+    pendingOfflineOnline = false;
+    const offSec = document.getElementById('offline-config-section');
+    if(offSec) offSec.style.display = 'none';
+    showToast('🟢 Store is back Online');
+  } catch(e){
+    showToast('⚠️ Error: '+e.message);
+  }
+}
+
+function startOfflineCountdown(returnTs){
+  stopOfflineCountdown();
+  if(!returnTs) return;
+  function tick(){
+    const diff = returnTs - Date.now();
+    const el = document.getElementById('offline-countdown-text');
+    if(!el) return;
+    if(diff <= 0){
+      el.textContent = 'We should be back any moment now!';
+      stopOfflineCountdown();
+      return;
+    }
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    let parts = [];
+    if(h > 0) parts.push(h+'h');
+    if(m > 0 || h > 0) parts.push(m+'m');
+    parts.push(s+'s');
+    el.textContent = 'Back in ' + parts.join(' ');
+  }
+  tick();
+  offlineCountdownInterval = setInterval(tick, 1000);
+}
+
+function stopOfflineCountdown(){
+  if(offlineCountdownInterval){ clearInterval(offlineCountdownInterval); offlineCountdownInterval=null; }
+  const el = document.getElementById('offline-countdown-text');
+  if(el) el.textContent = '';
+}
 </script>
 </body>
 </html>
